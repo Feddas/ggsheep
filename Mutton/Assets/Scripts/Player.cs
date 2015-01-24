@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
 
     }
 
-	public void Trample()
+	public void Score(ScoreType scoreType)
 	{
-		this.scoreManager.Score(this.playerId, ScoreType.Trample);
+		this.scoreManager.Score(this.playerId, scoreType);
 	}
 }
