@@ -26,7 +26,6 @@ public class TileGround : MonoBehaviour
 
 	public void SetState(ETileState state)
 	{
-		Debug.Log (state.ToString ());
 		if (state == _state) 
 		{
 			return;

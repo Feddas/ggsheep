@@ -5,7 +5,9 @@ public class PlayerController : MonoBehaviour
 {
 	// Require a character controller to be attached to the same game object
 	//@script RequireComponent(CharacterController)
-	
+
+	public Player _player;
+
 	public AnimationClip idleAnimation;
 	public AnimationClip walkAnimation;
 	public AnimationClip runAnimation;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
 		Running = 3,
 		Jumping = 4,
 	}
-	
+
 	private CharacterState _characterState;
 	
 	// The speed when walking
@@ -142,8 +144,8 @@ public AnimationClip jumpPoseAnimation;
 		// Always orthogonal to the forward vector
 		Vector3 right= new Vector3(forward.z, 0, -forward.x);
 
-		float v = Input.GetAxisRaw("VerticalGP1") + Input.GetAxisRaw("Vertical");
-		float h = Input.GetAxisRaw("HorizontalGP1") + Input.GetAxisRaw("Horizontal");
+		float v = Input.GetAxisRaw("VerticalGP" + ((int)_player.playerId).ToString()) + Input.GetAxisRaw("Vertical");
+		float h = Input.GetAxisRaw("HorizontalGP" + ((int)_player.playerId).ToString()) + Input.GetAxisRaw("Horizontal");
 
 		//float v= Input.GetAxisRaw("Vertical");
 		//float h= Input.GetAxisRaw("Horizontal");
