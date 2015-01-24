@@ -1,8 +1,4 @@
-﻿
-using System.Collections;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// PlayerId enum.
 /// </summary>
 public enum PlayerId

@@ -1,8 +1,4 @@
-﻿
-using System.Collections;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// ScoreType enum.
 /// </summary>
 public enum ScoreType
