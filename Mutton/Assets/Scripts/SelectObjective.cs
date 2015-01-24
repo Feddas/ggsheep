@@ -18,10 +18,7 @@ public class SelectObjective : MonoBehaviour
 
     private bool counterOn;
 
-    void Start()
-    {
-        Debug.Log("SecretObjective");
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
@@ -35,6 +32,9 @@ public class SelectObjective : MonoBehaviour
         }
 
         SetObjective(PlayerId.One);
+        SetObjective(PlayerId.Two);
+        SetObjective(PlayerId.Three);
+        SetObjective(PlayerId.Four);
     }
 
     private void SetObjective(PlayerId player)
@@ -47,8 +47,8 @@ public class SelectObjective : MonoBehaviour
             DirectionEnum dir = getDirection(xAxis, yAxis);
 
             Globals.Instance.Objective[player] = Objectives[dir];
-            Debug.Log(xAxis + ", " + yAxis
-                + dir + Globals.Instance.Objective[player]);
+            // Debug.Log(xAxis + ", " + yAxis
+            //    + dir + " " + player + ":" + Globals.Instance.Objective[player]);
         }
     }
 
@@ -74,6 +74,16 @@ public class SelectObjective : MonoBehaviour
 
     private void CounterFinished()
     {
+        string players = "";
+        foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
+        {
+            if (Globals.Instance.Objective.ContainsKey(player))
+            {
+                players += player + " is " + Globals.Instance.Objective[player] + System.Environment.NewLine;
+            }
+        }
+        Debug.Log(players);
+
         Application.LoadLevel("Farm");
     }
 }

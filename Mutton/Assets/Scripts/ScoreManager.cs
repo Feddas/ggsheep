@@ -45,7 +45,7 @@ public class ScoreManager : MonoBehaviour
     internal void Start()
     {
         //Test persistance of Globals.cs from menu scene
-        //Debug.Log("Globals instance = " + Globals.Instance.Objective[PlayerId.One]);
+        //Debug.Log("Globals instance = " + Globals.Instance.Objective[PlayerId.One] + Globals.Instance.Objective[PlayerId.Two]);
 
         // initialize player score structure
 		this.playerScores = new Dictionary<PlayerId, Dictionary<ScoreType, int>>();
