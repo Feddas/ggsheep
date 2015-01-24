@@ -19,3 +19,7 @@ _ReSharper*/
 # OS generated files
 Thumbs.db
 Thumbs.db.meta
+
+# UnityVS
+# Mutton/Assets/Standard Assets/AssetStore/*
+# Mutton/Assets/UnityVS
