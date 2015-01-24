@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 410952}
   - 95: {fileID: 9510986}
-  - 143: {fileID: 14310986}
-  - 114: {fileID: 11410986}
+  - 54: {fileID: 5400000}
+  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -507,6 +507,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 410978}
   m_RootOrder: 1
+--- !u!54 &5400000
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110952}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!95 &9510986
 Animator:
   serializedVersion: 3
@@ -522,19 +537,19 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11410986
-MonoBehaviour:
+--- !u!136 &13600000
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7a55a110e0b82c41b594eae1b776672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 4
-  SecondsInDirection: .5
+  m_Radius: .5
+  m_Height: 1.75
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.09000003, z: 0}
 --- !u!137 &13710986
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -581,20 +596,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -.0336410441, y: -.0322183818, z: -7.4505806e-09}
     m_Extent: {x: .113649338, y: .116774619, z: .100394532}
   m_DirtyAABB: 0
---- !u!143 &14310986
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110952}
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: .5
-  m_SlopeLimit: 45
-  m_StepOffset: .300000012
-  m_SkinWidth: .0799999982
-  m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
