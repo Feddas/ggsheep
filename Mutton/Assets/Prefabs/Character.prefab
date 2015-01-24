@@ -541,8 +541,8 @@ GameObject:
   - 4: {fileID: 400070}
   - 111: {fileID: 11100000}
   - 143: {fileID: 14300000}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -1773,27 +1773,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 100070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d5ac211a643e447ca78c2d794a16381, type: 3}
+  m_Script: {fileID: 11500000, guid: b4b917ea7297f4e0494459090c479398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleAnimation: {fileID: 7400002, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
-  walkAnimation: {fileID: 7400008, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
-  runAnimation: {fileID: 7400004, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
-  jumpPoseAnimation: {fileID: 7400010, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
-  walkMaxAnimationSpeed: .899999976
-  trotMaxAnimationSpeed: 1.29999995
-  runMaxAnimationSpeed: .899999976
+  idleAnimation: {fileID: 0}
+  walkAnimation: {fileID: 0}
+  runAnimation: {fileID: 0}
+  jumpPoseAnimation: {fileID: 0}
+  walkMaxAnimationSpeed: .75
+  trotMaxAnimationSpeed: 1
+  runMaxAnimationSpeed: 1
   jumpAnimationSpeed: 1.14999998
   landAnimationSpeed: 1
-  walkSpeed: 3
+  walkSpeed: 2
   trotSpeed: 4
-  runSpeed: 8
+  runSpeed: 6
   inAirControlAcceleration: 3
-  jumpHeight: 1
+  jumpHeight: .5
   gravity: 20
   speedSmoothing: 10
   rotateSpeed: 500
-  trotAfterSeconds: 2
+  trotAfterSeconds: 3
   canJump: 1
 --- !u!136 &13600000
 CapsuleCollider:
