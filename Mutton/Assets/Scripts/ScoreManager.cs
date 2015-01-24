@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     /// <summary>
     /// Collection of score text fields.
     /// </summary>
-	public List<TeamScores> scoreTextFields;
+	public List<ScoreboardUI> scoreboards;
 
     /// <summary>
     /// Each player's score for each score type.
@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     internal void Update()
     {
-
+		// TODO: timed game rules
     }
 
     /// <summary>
@@ -86,15 +86,7 @@ public class ScoreManager : MonoBehaviour
         var teamScore = this.TeamScore(team, scoreType);
 
         // get the text field for this player's team and score type and update it
-        var textField = this.scoreTextFields[team].GetText(scoreType);
-	    if (textField != null)
-	    {
-            textField.text = teamScore.ToString();
-	    }
-	    else
-	    {
-	        throw new MissingComponentException("The text field has not been hooked up for scoreType " + scoreType);
-	    }
+		this.scoreboards[team].SetScore(scoreType, teamScore);
 	}
 
     /// <summary>
@@ -113,39 +105,5 @@ public class ScoreManager : MonoBehaviour
         }
 
         return rval;
-    }
-}
-
-/// <summary>
-/// Container for all text fields related to team score.
-/// </summary>
-[Serializable]
-public struct TeamScores
-{
-    public Text trample;
-    public Text eat;
-    public Text capture;
-    public Text plant;
-
-    /// <summary>
-    /// Get the text field corresponding to the given score type.
-    /// </summary>
-    /// <param name="scoreType"></param>
-    /// <returns></returns>
-    public Text GetText(ScoreType scoreType)
-    {
-        switch (scoreType)
-        {
-            case ScoreType.Trample:
-                return this.trample;
-            case ScoreType.Eat:
-                return this.eat;
-            case ScoreType.Capture:
-                return this.capture;
-            case ScoreType.Plant:
-                return this.plant;
-        }
-
-        throw new InvalidEnumArgumentException("No text defined for ScoreType " + scoreType);
     }
 }
