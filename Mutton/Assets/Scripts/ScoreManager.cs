@@ -9,11 +9,11 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    /// <summary>
+	    /// <summary>
     /// Collection of score text fields.
     /// </summary>
 	public List<ScoreboardUI> scoreboards;
-
+	
     /// <summary>
     /// Each player's score for each score type.
     /// </summary>
@@ -59,6 +59,12 @@ public class ScoreManager : MonoBehaviour
                 this.playerToTeam.Add(playerId, teamNumber);
             }
         }
+
+		// enable only relevant scoreboards
+		for (int teamNumber = 0; teamNumber < this.scoreboards.Count; teamNumber++)
+		{
+			this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < this.teamToPlayers.Count);
+		}
     }
 
     /// <summary>
