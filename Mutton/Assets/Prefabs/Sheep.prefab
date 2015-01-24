@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 410952}
   - 95: {fileID: 9510986}
   - 54: {fileID: 5400000}
-  - 136: {fileID: 13600000}
+  - 65: {fileID: 6500000}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -522,6 +522,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: .519999981, z: 0}
 --- !u!95 &9510986
 Animator:
   serializedVersion: 3
@@ -537,19 +549,6 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!136 &13600000
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110952}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 1.75
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.09000003, z: 0}
 --- !u!137 &13710986
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

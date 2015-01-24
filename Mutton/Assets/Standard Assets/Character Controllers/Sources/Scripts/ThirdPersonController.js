@@ -138,10 +138,20 @@ function UpdateSmoothedMovementDirection ()
 	// Always orthogonal to the forward vector
 	var right = Vector3(forward.z, 0, -forward.x);
 
-	var v = Input.GetAxisRaw("Vertical");
-	var h = Input.GetAxisRaw("Horizontal");
-
-	// Are we moving backwards or looking backwards
+	var v = Input.GetAxisRaw("VerticalGP1");
+	var h = Input.GetAxisRaw("HorizontalGP1");
+	
+	//Debug.Log(Input.GetAxisRaw("VerticalGP1"));
+	//Debug.Log(Input.GetAxisRaw("VerticalGP2"));
+	//Debug.Log(Input.GetAxisRaw("VerticalGP3"));
+	//Debug.Log(Input.GetAxisRaw("VerticalGP4"));
+	
+	//Debug.Log(Input.GetAxisRaw("HorizontalGP1"));
+	//Debug.Log(Input.GetAxisRaw("HorizontalGP2"));
+	//Debug.Log(Input.GetAxisRaw("HorizontalGP3"));
+	//Debug.Log(Input.GetAxisRaw("HorizontalGP4"));
+	
+			// Are we moving backwards or looking backwards
 	if (v < -0.2)
 		movingBack = true;
 	else
