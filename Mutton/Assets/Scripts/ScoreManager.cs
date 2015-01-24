@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
-	    /// <summary>
+	/// <summary>
     /// Collection of score text fields.
     /// </summary>
 	public List<ScoreboardUI> scoreboards;
@@ -92,7 +92,10 @@ public class ScoreManager : MonoBehaviour
         var teamScore = this.TeamScore(team, scoreType);
 
         // get the text field for this player's team and score type and update it
-		this.scoreboards[team].SetScore(scoreType, teamScore);
+		if (team < this.scoreboards.Count && this.scoreboards[team] != null)
+		{
+			this.scoreboards[team].SetScore(scoreType, teamScore);
+		}
 	}
 
     /// <summary>
