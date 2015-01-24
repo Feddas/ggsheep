@@ -44,6 +44,9 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     internal void Start()
     {
+        //Test persistance of Globals.cs from menu scene
+        //Debug.Log("Globals instance = " + Globals.Instance.Objective[PlayerId.One]);
+
         // initialize player score structure
 		this.playerScores = new Dictionary<PlayerId, Dictionary<ScoreType, int>>();
         foreach (PlayerId playerId in Enum.GetValues(typeof(PlayerId)))

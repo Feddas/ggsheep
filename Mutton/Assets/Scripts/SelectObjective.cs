@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SelectObjective : MonoBehaviour
 {
+    public Text TimerText;
+    public float SecondsToSelect = 30;
+
     System.Collections.Generic.Dictionary<DirectionEnum, ScoreType> Objectives = new Dictionary<DirectionEnum, ScoreType>()
     {
         {DirectionEnum.Up, ScoreType.Eat},
@@ -12,7 +16,7 @@ public class SelectObjective : MonoBehaviour
         {DirectionEnum.Left, ScoreType.Trample},
     };
 
-    private bool startCounter;
+    private bool counterOn;
 
     void Start()
     {
@@ -22,7 +26,13 @@ public class SelectObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startCounter) ; // start counter
+        if (counterOn)
+        {
+            SecondsToSelect -= Time.deltaTime; // start counter
+            TimerText.text = string.Format("Seconds left {0:0}", SecondsToSelect);
+            if (SecondsToSelect <= 0)
+                CounterFinished();
+        }
 
         SetObjective(PlayerId.One);
     }
@@ -33,7 +43,7 @@ public class SelectObjective : MonoBehaviour
         float yAxis = Input.GetAxisRaw("VerticalGP" + (int)player);
         if (xAxis != 0 && yAxis != 0)
         {
-            startCounter = true;
+            counterOn = true;
             DirectionEnum dir = getDirection(xAxis, yAxis);
 
             Globals.Instance.Objective[player] = Objectives[dir];
