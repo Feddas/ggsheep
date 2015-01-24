@@ -87,7 +87,7 @@ GameObject:
   - 136: {fileID: 13600000}
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1764,7 +1764,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62c4cb2ce3194fb9b10b5d3e1d6513f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 0
+  playerId: 1
+  playerState: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1776,6 +1777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b917ea7297f4e0494459090c479398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 11400000}
   idleAnimation: {fileID: 0}
   walkAnimation: {fileID: 0}
   runAnimation: {fileID: 0}

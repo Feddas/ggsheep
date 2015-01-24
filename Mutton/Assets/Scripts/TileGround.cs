@@ -16,7 +16,7 @@ public class TileGround : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		SetState (ETileState.grass);
+		SetState (_state);
 	}
 	
 	// Update is called once per frame

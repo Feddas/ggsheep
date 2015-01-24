@@ -1,5 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+
+
+public enum PlayerStates
+{
+	Trample,
+	PushPen,
+	PushSheep,
+};
 
 /// <summary>
 /// Player class.
@@ -7,6 +16,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public PlayerId playerId;
+	public PlayerStates playerState = PlayerStates.Trample;
+	
+	//public List<PlayerStates> _stateList; //@@ Add list of states to fix potential bugs with sheep shed push
+
+	public PlayerStates PlayerState 
+	{
+		get {
+			return playerState;
+		}
+		set {
+			playerState = value;
+		}
+	}
+
 
 	private ScoreManager scoreManager;
 

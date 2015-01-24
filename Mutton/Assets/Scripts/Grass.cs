@@ -7,7 +7,6 @@ public class Grass : TileGround
 {
 	internal void OnTriggerEnter(Collider other) 
 	{
-		//Debug.Log ("TRIGGER ENTER");
 		var player = other.GetComponent<Player>();
 		if (player != null)
 		{
