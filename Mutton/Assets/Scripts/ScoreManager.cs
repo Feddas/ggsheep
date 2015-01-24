@@ -9,6 +9,11 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
+	public int tramplePoints = 1;
+	public int eatPoints = 2;
+	public int capturePoints = 25;
+	public int plantPoints = 2;
+
 	/// <summary>
     /// Collection of score text fields.
     /// </summary>
@@ -83,7 +88,7 @@ public class ScoreManager : MonoBehaviour
 	public void Score(PlayerId playerId, ScoreType scoreType)
 	{
         // increment player score
-		this.playerScores[playerId][scoreType]++;
+		this.playerScores[playerId][scoreType] += this.ScoreModifier(scoreType);
 
         // get player's team
         var team = this.playerToTeam[playerId];
@@ -115,4 +120,21 @@ public class ScoreManager : MonoBehaviour
 
         return rval;
     }
+
+	private int ScoreModifier(ScoreType scoreType)
+	{
+		switch (scoreType)
+		{
+		case ScoreType.Trample:
+			return this.tramplePoints;
+		case ScoreType.Eat:
+			return this.eatPoints;
+		case ScoreType.Capture:
+			return this.capturePoints;
+		case ScoreType.Plant:
+			return this.plantPoints;
+		}
+
+		throw new InvalidEnumArgumentException("No score modifier defined for ScoreType " + scoreType);
+	}
 }
