@@ -916,7 +916,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerText: {fileID: 1790235812}
-  SecondsToSelect: 20
+  SecondsToSelect: 8
+  TeamText:
+  - {fileID: 1439889503}
+  - {fileID: 1764826135}
   PlayerIcons:
   - {fileID: 391964274}
   - {fileID: 1341233504}
