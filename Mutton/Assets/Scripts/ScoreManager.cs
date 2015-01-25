@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
 	public int capturePoints = 25;
 	public int plantPoints = 2;
 
-	public float countdownTime = 5f;
+	public int countdownTicks = 5;
 	public float gameTime = 90f;
 	private bool startTimer = false;
 
@@ -25,6 +25,8 @@ public class ScoreManager : MonoBehaviour
 	public List<ScoreboardUI> scoreboards;
 
 	public Text timer;
+
+	public Popup popup;
 
     /// <summary>
     /// Each player's score for each score type.
@@ -81,7 +83,8 @@ public class ScoreManager : MonoBehaviour
 			this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < this.teamToPlayers.Count);
 		}
 
-		this.StartCoroutine(this.WaitAndInvoke(1f, () => this.StartTimer()));
+		//this.StartCoroutine(this.WaitAndInvoke(1f, () => this.StartCountdown()));
+		this.InvokeRepeating("Countdown", 1f, 1f);
     }
 
     /// <summary>
@@ -94,33 +97,18 @@ public class ScoreManager : MonoBehaviour
 			return;
 		}
 
-		if (this.countdownTime > 0f)
+		if (this.gameTime > 0f)
 		{
-			this.countdownTime -= Time.deltaTime;
-			if (this.countdownTime < 0f)
+			this.gameTime -= Time.deltaTime;
+			if (this.gameTime < 0f)
 			{
-				this.countdownTime = 0f;
-			}
-		} 
-		else
-		{
-			if (this.gameTime > 0f)
-			{
-				this.gameTime -= Time.deltaTime;
-				if (this.gameTime < 0f)
-				{
-					this.gameTime = 0f;
-				}
+				this.gameTime = 0f;
+				// finish and score game
+				this.popup.Show("Game Over!");
 			}
 		}
 
-		float displayTime = this.gameTime;
-		if (this.countdownTime > 0f)
-		{
-			displayTime = Mathf.Floor(this.countdownTime) + 1;
-		}
-
-		this.timer.text = string.Format("{0:0}", this.countdownTime > 0f ? this.countdownTime : this.gameTime);
+		this.timer.text = string.Format("{0:0}", this.gameTime);
     }
 
     /// <summary>
@@ -181,15 +169,30 @@ public class ScoreManager : MonoBehaviour
 		throw new InvalidEnumArgumentException("No score modifier defined for ScoreType " + scoreType);
 	}
 
-	private void StartTimer()
+	private void Countdown()
 	{
-		Debug.Log("Start Timer");
-		this.startTimer = true;
+		if (this.countdownTicks > 0)
+		{
+			this.popup.Show(this.countdownTicks.ToString());
+			this.countdownTicks--;
+		} 
+		else
+		{
+			this.popup.Show("Go!");
+			this.startTimer = true;
+			this.CancelInvoke();
+		}
 	}
 
-	internal IEnumerator WaitAndInvoke(float delay, Action function)
-	{
-		yield return new WaitForSeconds(delay);
-		function();
-	}
+//	private void StartTimer()
+//	{
+//		Debug.Log("Start Timer");
+//		this.startTimer = true;
+//	}
+//
+//	internal IEnumerator WaitAndInvoke(float delay, Action function)
+//	{
+//		yield return new WaitForSeconds(delay);
+//		function();
+//	}
 }

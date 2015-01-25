@@ -543,7 +543,7 @@ GameObject:
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -907,6 +907,7 @@ GameObject:
   - 33: {fileID: 3300004}
   - 136: {fileID: 13600002}
   - 23: {fileID: 2300004}
+  - 114: {fileID: 11454932}
   m_Layer: 0
   m_Name: PushActivator
   m_TagString: Untagged
@@ -1855,6 +1856,18 @@ MonoBehaviour:
   rotateSpeed: 500
   trotAfterSeconds: 3
   canJump: 1
+--- !u!114 &11454932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e01e4d3f6d54146b27cb597767b623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 11400000}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
