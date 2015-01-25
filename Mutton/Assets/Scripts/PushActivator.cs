@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PushActivator : MonoBehaviour {
 
-	Player _player;
+	public Player _player;
 	// Use this for initialization
 	void Start () 
 	{
@@ -22,12 +22,24 @@ public class PushActivator : MonoBehaviour {
 		{
 			_player.PlayerState = PlayerStates.PushPen;
 		}
+
+		Sheep sheep = other.GetComponent<Sheep>();
+		if (sheep != null) 
+		{
+			_player.PlayerState = PlayerStates.PushSheep;
+		}
 	}
 
 	void OnTriggerExit(Collider other) 
 	{
 		Pen pen = other.GetComponent<Pen>();
 		if (pen != null && _player.PlayerState == PlayerStates.PushPen)
+		{
+			_player.PlayerState = PlayerStates.Trample;
+		}
+
+		Sheep sheep = other.GetComponent<Sheep>();
+		if (sheep != null && _player.PlayerState == PlayerStates.PushSheep) 
 		{
 			_player.PlayerState = PlayerStates.Trample;
 		}
