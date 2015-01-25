@@ -377,7 +377,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2808,7 +2808,7 @@ Transform:
   m_PrefabInternal: {fileID: 1023618124}
   m_GameObject: {fileID: 549335614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .296638489, y: .305000007, z: -.103458405}
+  m_LocalPosition: {x: 3, y: 1.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 939113968}
@@ -2862,9 +2862,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 3
   playerState: 0
+  m_hatMaterials:
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
+  - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  _hatMaterialIndex: 1
   playerHead: {fileID: 1121967291}
   minPlayerHeadSize: 1
   maxPlayerHeadSize: 2
+  meshRenderer: {fileID: 1092101981}
 --- !u!143 &549335618
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3795,7 +3802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &811992994
 Transform:
   m_ObjectHideFlags: 0
@@ -3803,7 +3810,7 @@ Transform:
   m_PrefabInternal: {fileID: 1868667555}
   m_GameObject: {fileID: 811992993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .296638489, y: .305000007, z: -.103458405}
+  m_LocalPosition: {x: -3, y: 1.5, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1461028081}
@@ -3825,9 +3832,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 2
   playerState: 0
+  m_hatMaterials:
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
+  - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  _hatMaterialIndex: 1
   playerHead: {fileID: 878157538}
   minPlayerHeadSize: 1
   maxPlayerHeadSize: 2
+  meshRenderer: {fileID: 1129447749}
 --- !u!114 &811992996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4509,6 +4523,10 @@ Prefab:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 845212308}
+    - target: {fileID: 11474256, guid: b1888ee06bf8d4041845884cdb81afa0, type: 2}
+      propertyPath: gameTime
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1888ee06bf8d4041845884cdb81afa0, type: 2}
   m_RootGameObject: {fileID: 1607073059}
@@ -4995,15 +5013,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .296638489
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .305000007
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.103458405
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6753,7 +6771,7 @@ Transform:
   m_PrefabInternal: {fileID: 1761588262}
   m_GameObject: {fileID: 1351580967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .296638489, y: .305000007, z: -.103458405}
+  m_LocalPosition: {x: -6, y: 1.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400926472}
@@ -6807,9 +6825,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 4
   playerState: 0
+  m_hatMaterials:
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
+  - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  _hatMaterialIndex: 1
   playerHead: {fileID: 1432403071}
   minPlayerHeadSize: 1
   maxPlayerHeadSize: 2
+  meshRenderer: {fileID: 1454472487}
 --- !u!143 &1351580971
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8319,11 +8344,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tramplePoints: 1
-  eatPoints: 3
-  capturePoints: 100
+  eatPoints: 2
+  capturePoints: 50
   plantPoints: 1
   countdownTicks: 3
-  gameTime: 15
+  gameTime: 60
   scoreboards:
   - {fileID: 1115062650}
   - {fileID: 845004993}
@@ -8651,15 +8676,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .296638489
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .305000007
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.103458405
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9091,15 +9116,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .296638489
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .305000007
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.103458405
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9131,7 +9156,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
@@ -9396,7 +9421,7 @@ Transform:
   m_PrefabInternal: {fileID: 49313684}
   m_GameObject: {fileID: 2076892432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 472448961}
@@ -9418,9 +9443,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 1
   playerState: 0
+  m_hatMaterials:
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
+  - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  _hatMaterialIndex: 1
   playerHead: {fileID: 150680507}
   minPlayerHeadSize: 1
   maxPlayerHeadSize: 2
+  meshRenderer: {fileID: 1799798789}
 --- !u!114 &2076892435
 MonoBehaviour:
   m_ObjectHideFlags: 0

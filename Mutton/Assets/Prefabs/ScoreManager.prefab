@@ -40,8 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tramplePoints: 1
-  eatPoints: 3
-  capturePoints: 100
+  eatPoints: 2
+  capturePoints: 50
   plantPoints: 1
   countdownTicks: 3
   gameTime: 15
