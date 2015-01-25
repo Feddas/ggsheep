@@ -83,7 +83,7 @@ public class SelectObjective : MonoBehaviour
                 this.objective[player] = objective;
 
                 // apply to team
-                //this.teamManager.GetTeam(player).objective = objective;
+                this.teamManager.GetTeam(player).objective = objective;
 
                 updateConcensus(player);
                 audio.Stop();
@@ -198,7 +198,7 @@ public class SelectObjective : MonoBehaviour
         {
             if (this.objective.ContainsKey(player))
             {
-                players += player + " is " + this.objective[player] + "   ";
+                players += player + " is " + this.objective[player] + " " + this.teamManager.GetTeam(player) + "   ";
             }
         }
         Debug.Log(players);
