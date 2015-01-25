@@ -105,6 +105,13 @@ public class ScoreManager : MonoBehaviour
 				this.gameTime = 0f;
 				// finish and score game
 				this.popup.Show("Game Over!");
+
+				foreach(var player in Globals.Instance.Objective.Keys)
+				{
+					var objective = Globals.Instance.Objective[player];
+					var team = this.playerToTeam[player];
+					this.scoreboards[team].HighlightObjective(objective);
+				}
 			}
 		}
 

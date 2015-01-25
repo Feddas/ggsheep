@@ -9,6 +9,15 @@ public class ScoreUI : MonoBehaviour
 {
 	public Image image;
 	public Text text;
+	private Image highlightImage;
+
+	/// <summary>
+	/// Initialize script state.
+	/// </summary>
+	internal void Start()
+	{
+		this.highlightImage = this.GetComponent<Image>();
+	}
 
 	/// <summary>
 	/// Update the score UI.
@@ -18,5 +27,10 @@ public class ScoreUI : MonoBehaviour
 	{
 		this.text.text = value.ToString();
 		// TODO: if we want to animate the icon/play sound/etc when this score changes, this is where we'd do that
+	}
+
+	public void Highlight()
+	{
+		this.highlightImage.enabled = true;
 	}
 }

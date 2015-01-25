@@ -17,11 +17,24 @@ public class Popup : MonoBehaviour
 		this.text = this.GetComponent<Text>();
     }
 
-	public void Show(string message)
+	public void Show(string message, bool animate = true)
 	{
-		this.animation.Stop();
 		this.text.text = message;
-		this.animation.Rewind();
-		this.animation.Play();
+		if (animate)
+		{
+			this.animation.Stop();
+			this.animation.Rewind();
+			this.animation.Play();
+		} 
+		else
+		{
+			this.text.enabled = true;
+			Invoke("Hide", 10f);
+		}
+	}
+
+	private void Hide()
+	{
+		this.text.enabled = false;
 	}
 }

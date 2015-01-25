@@ -25,6 +25,12 @@ public class ScoreboardUI : MonoBehaviour
 		score.SetScore(value);
 	}
 
+	public void HighlightObjective(ScoreType scoreType)
+	{
+		var score = this.GetScoreUI(scoreType);
+		score.Highlight();
+	}
+
 	private ScoreUI GetScoreUI(ScoreType scoreType)
 	{
 		switch (scoreType)

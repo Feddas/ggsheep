@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerText: {fileID: 1790235812}
-  SecondsToSelect: 20
+  SecondsToSelect: 5
 --- !u!114 &1250931610
 MonoBehaviour:
   m_ObjectHideFlags: 0
