@@ -8,6 +8,7 @@ public enum PlayerStates
 	Trample,
 	PushPen,
 	PushSheep,
+    PushButton,
 };
 
 /// <summary>
