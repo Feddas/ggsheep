@@ -101,7 +101,12 @@ MonoBehaviour:
   soundEffectDefinitions:
   - soundEffect: 0
     audioClips:
-    - {fileID: 8300000, guid: d767da1c21a05294db31ac1a8f585894, type: 3}
+    - {fileID: 8300000, guid: 7c18acdab7b2a482ca49c50e20d194ef, type: 3}
+    - {fileID: 8300000, guid: b084b5e3afd1b438794bad9930518a39, type: 3}
+    - {fileID: 8300000, guid: 7d9a82cb9993f40f8bdef2cbb893ff95, type: 3}
+    - {fileID: 8300000, guid: f1e71e5205c294a02bfc15f064619b0e, type: 3}
+    - {fileID: 8300000, guid: 8817afcfbd0a44bcbb1c988c807db34a, type: 3}
+    - {fileID: 8300000, guid: 2f28fe153cfe54373915b404847b21b8, type: 3}
   - soundEffect: 1
     audioClips:
     - {fileID: 8300000, guid: e0731de44bc9b491a8d50eb538286822, type: 3}
