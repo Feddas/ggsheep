@@ -630,7 +630,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use your controllers D-Pad to select your secret objective.
+  m_Text: Use your controller's Analog Stick to select your secret objective.
 --- !u!222 &1233784415
 CanvasRenderer:
   m_ObjectHideFlags: 0
