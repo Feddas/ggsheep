@@ -187,8 +187,6 @@ public AnimationClip jumpPoseAnimation;
 			}
 			
 			// Smooth the speed based on the current target direction
-			float curSmooth= Time.deltaTime;
-			
 			// Choose target speed
 			//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
 			float targetSpeed= Mathf.Min(targetDirection.magnitude, 1.0f);
