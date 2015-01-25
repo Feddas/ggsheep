@@ -416,7 +416,7 @@ AudioSource:
   m_GameObject: {fileID: 122917853}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: ae1ef2b0fb5999d45a502f9f68d75e8b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ebb7f1ab131b31845bac228481104cc1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -761,7 +761,8 @@ GameObject:
   - 54: {fileID: 416817489}
   - 65: {fileID: 416817488}
   - 82: {fileID: 416817487}
-  m_Layer: 0
+  - 114: {fileID: 416817491}
+  m_Layer: 9
   m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +776,7 @@ Transform:
   m_PrefabInternal: {fileID: 1575186685}
   m_GameObject: {fileID: 416817485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .660000026, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 847387138}
@@ -886,6 +887,19 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &416817491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11489070, guid: c38716e31b3c77f47aeef58162ba9a19,
+    type: 2}
+  m_PrefabInternal: {fileID: 1575186685}
+  m_GameObject: {fileID: 416817485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436c021924f76492e8126a9f6772c0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastOwner: {fileID: 0}
 --- !u!1 &422769959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2542,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410952, guid: c38716e31b3c77f47aeef58162ba9a19, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .660000026
       objectReference: {fileID: 0}
     - target: {fileID: 410952, guid: c38716e31b3c77f47aeef58162ba9a19, type: 2}
       propertyPath: m_LocalPosition.z
