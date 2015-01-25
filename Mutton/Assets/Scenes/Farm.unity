@@ -2731,19 +2731,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.0424946249
+      value: -.0424946286
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .705828726
+      value: .705828786
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.645371556
+      value: -.645371616
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -.288955986
+      value: -.288956016
       objectReference: {fileID: 0}
     - target: {fileID: 100070, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_Name
@@ -3007,10 +3007,10 @@ MonoBehaviour:
   playerId: 3
   playerState: 0
   m_hatMaterials:
-  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
-  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
   - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   _hatMaterialIndex: 1
   playerHead: {fileID: 958161451}
   minPlayerHeadSize: 1
@@ -4434,13 +4434,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62c4cb2ce3194fb9b10b5d3e1d6513f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 1
+  playerId: 2
   playerState: 0
   m_hatMaterials:
-  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
-  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
   - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   _hatMaterialIndex: 1
   playerHead: {fileID: 1845210398}
   minPlayerHeadSize: 1
@@ -5347,19 +5347,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.0424946249
+      value: -.0424946286
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .705828726
+      value: .705828786
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.645371556
+      value: -.645371616
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -.288955986
+      value: -.288956016
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
@@ -6681,10 +6681,10 @@ MonoBehaviour:
   playerId: 4
   playerState: 0
   m_hatMaterials:
-  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
-  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
   - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   _hatMaterialIndex: 1
   playerHead: {fileID: 1142303828}
   minPlayerHeadSize: 1
@@ -8227,19 +8227,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.0424946249
+      value: -.0424946286
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .705828726
+      value: .705828786
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.645371556
+      value: -.645371616
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -.288955986
+      value: -.288956016
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
@@ -8639,19 +8639,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.0424946249
+      value: -.0424946286
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .705828726
+      value: .705828786
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.645371556
+      value: -.645371616
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -.288955986
+      value: -.288956016
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
+      propertyPath: playerId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c02d6c15b83442b0a18b4dbb0dd5de2, type: 2}
@@ -9307,10 +9311,10 @@ MonoBehaviour:
   playerId: 1
   playerState: 0
   m_hatMaterials:
-  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
-  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
   - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   _hatMaterialIndex: 1
   playerHead: {fileID: 2125720380}
   minPlayerHeadSize: 1

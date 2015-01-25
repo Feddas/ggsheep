@@ -41,10 +41,12 @@ public class Player : Respawnable
 
     float GetHeadScale()
     {
-        float total = (float)this.scoreManager.GetTotalScore ();
+		float teamScore = this.scoreManager.GetTeamScore(this.playerId);
+        //float total = (float)this.scoreManager.GetTotalScore ();
 
-        float scale = total < float.Epsilon ? 0.0f : (this.scoreManager.GetScore (playerId) / total);
-        return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
+        //float scale = total < float.Epsilon ? 0.0f : (this.scoreManager.GetTotalScore.GetScore (playerId) / total);
+        //return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
+		return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * Mathf.Clamp((float)teamScore / this.scoreManager.maxHeadSizeReferenceScore, 0f, 1f);
     }
 
 	public override void Update () 
@@ -56,9 +58,7 @@ public class Player : Respawnable
 		playerHead.transform.localScale = new Vector3(scale,scale,scale);
 	}
 
-
 	private ScoreManager scoreManager;
-
 
     /// <summary>
     /// Initialize script state.
