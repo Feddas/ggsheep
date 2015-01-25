@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -14,11 +15,19 @@ public class ScoreManager : MonoBehaviour
 	public int capturePoints = 25;
 	public int plantPoints = 2;
 
+	public int countdownTicks = 5;
+	public float gameTime = 90f;
+	private bool startTimer = false;
+
 	/// <summary>
     /// Collection of score text fields.
     /// </summary>
 	public List<ScoreboardUI> scoreboards;
-	
+
+	public Text timer;
+
+	public Popup popup;
+
     /// <summary>
     /// Each player's score for each score type.
     /// </summary>
@@ -73,6 +82,9 @@ public class ScoreManager : MonoBehaviour
 		{
 			this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < this.teamToPlayers.Count);
 		}
+
+		//this.StartCoroutine(this.WaitAndInvoke(1f, () => this.StartCountdown()));
+		this.InvokeRepeating("Countdown", 1f, 1f);
     }
 
     /// <summary>
@@ -80,7 +92,23 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     internal void Update()
     {
-		// TODO: timed game rules
+		if (!this.startTimer)
+		{
+			return;
+		}
+
+		if (this.gameTime > 0f)
+		{
+			this.gameTime -= Time.deltaTime;
+			if (this.gameTime < 0f)
+			{
+				this.gameTime = 0f;
+				// finish and score game
+				this.popup.Show("Game Over!");
+			}
+		}
+
+		this.timer.text = string.Format("{0:0}", this.gameTime);
     }
 
     /// <summary>
@@ -140,4 +168,31 @@ public class ScoreManager : MonoBehaviour
 
 		throw new InvalidEnumArgumentException("No score modifier defined for ScoreType " + scoreType);
 	}
+
+	private void Countdown()
+	{
+		if (this.countdownTicks > 0)
+		{
+			this.popup.Show(this.countdownTicks.ToString());
+			this.countdownTicks--;
+		} 
+		else
+		{
+			this.popup.Show("Go!");
+			this.startTimer = true;
+			this.CancelInvoke();
+		}
+	}
+
+//	private void StartTimer()
+//	{
+//		Debug.Log("Start Timer");
+//		this.startTimer = true;
+//	}
+//
+//	internal IEnumerator WaitAndInvoke(float delay, Action function)
+//	{
+//		yield return new WaitForSeconds(delay);
+//		function();
+//	}
 }

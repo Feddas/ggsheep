@@ -40,7 +40,10 @@ public class Sheep : Respawnable
 		var player = collision.transform.GetComponentInParent<Player>();
 		if (player != null)
 		{
-			this.lastOwner = player;
+            this.lastOwner = player;
+            audio.Stop();
+            audio.pitch = (float)player.playerId / 2;
+            audio.Play();
 		}
 	}
 }

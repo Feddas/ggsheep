@@ -13,6 +13,7 @@ Global Game Jam 2015 game about sheep
 3. Sheep can be pushed into the pen.
 4. Player can push the pen around to grow grass.
 
-## fair use credits:
-https://www.freesound.org/people/esperar/sounds/171152/
-https://www.freesound.org/people/caquet/sounds/136298/
+## creative commons use credits:
+Baa - https://www.freesound.org/people/esperar/sounds/171152/
+SheepBells - https://www.freesound.org/people/caquet/sounds/136298/
+FolkGuitar - https://www.freesound.org/people/Dvideoguy/sounds/246315/
