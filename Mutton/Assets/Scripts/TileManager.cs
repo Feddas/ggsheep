@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour {
 	public GameObject _levelGenerator;
 	public bool _continuousGeneration;
 	private float m_timeBetweenGeneration = 3.0f;
-	private Vector3 m_playerOffset = new Vector3(0.0f,1.0f,0.0f);
+	public Vector3 m_playerOffset = new Vector3(0.0f,10.0f,0.0f);
 
 	public float _respawnHeight = -5.0f;
 
