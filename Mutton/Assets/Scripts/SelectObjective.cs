@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ public class SelectObjective : MonoBehaviour
     private Text[] TeamText;
     [SerializeField]
     private Image[] PlayerIcons;
+    [SerializeField]
+    private string LevelToLoad = "Farm";
     #endregion [ Unity3D Inspector ]
 
     #region [ private variables ]
@@ -27,10 +30,17 @@ public class SelectObjective : MonoBehaviour
     };
 
     private bool counterOn;
+    private Dictionary<PlayerId, ScoreType> objective;
+    private TeamManager teamManager;
     #endregion [ private variables ]
 
     #region [ Unity Events ]
-    void Start() { }
+
+    void Start()
+    {
+        this.objective = new Dictionary<PlayerId, ScoreType>();
+        this.teamManager = FindObjectOfType<TeamManager>();
+    }
 
     void Update()
     {
@@ -58,16 +68,20 @@ public class SelectObjective : MonoBehaviour
         {
             DirectionEnum dir = getDirection(xAxis, yAxis);
             var objective = ObjectiveUiMap[dir];
-            bool newPlayer = Globals.Instance.Objective.ContainsKey(player) == false;
+            bool newPlayer = !this.objective.ContainsKey(player);
             if (newPlayer)
             {
                 counterOn = true;
                 enablePlayer(player);
             }
             if (newPlayer ||
-                Globals.Instance.Objective[player] != objective)
+                this.objective[player] != objective)
             {
-                Globals.Instance.Objective[player] = objective;
+                this.objective[player] = objective;
+
+                // apply to team
+                this.teamManager.GetTeam(player).objective = objective;
+
                 updateConcensus(player);
                 audio.Stop();
                 audio.pitch = (float)player / 2f;
@@ -119,9 +133,9 @@ public class SelectObjective : MonoBehaviour
     {
         PlayerId teammate = getTeammate(player);
 
-        if (Globals.Instance.Objective.ContainsKey(teammate))
+        if (this.objective.ContainsKey(teammate))
         {
-            bool result = Globals.Instance.Objective[player] == Globals.Instance.Objective[teammate];
+            bool result = this.objective[player] == this.objective[teammate];
             return result;
         }
         else
@@ -132,37 +146,39 @@ public class SelectObjective : MonoBehaviour
 
     private PlayerId getTeammate(PlayerId player)
     {
-        PlayerId teammate;
-        switch (player)
-        {
-            case PlayerId.One:
-                teammate = PlayerId.Two;
-                break;
-            case PlayerId.Two:
-                teammate = PlayerId.One;
-                break;
-            case PlayerId.Three:
-                teammate = PlayerId.Four;
-                break;
-            case PlayerId.Four:
-                teammate = PlayerId.Three;
-                break;
-            default:
-                throw new System.Exception("invalid playerId in isConcensus");
-        }
-        return teammate;
+        return this.teamManager.GetTeam(player).members.First(x => x != player);//.Select(x => x != player).First();
+        //PlayerId teammate;
+        //switch (player)
+        //{
+        //    case PlayerId.One:
+        //        teammate = PlayerId.Three;
+        //        break;
+        //    case PlayerId.Two:
+        //        teammate = PlayerId.Four;
+        //        break;
+        //    case PlayerId.Three:
+        //        teammate = PlayerId.One;
+        //        break;
+        //    case PlayerId.Four:
+        //        teammate = PlayerId.Two;
+        //        break;
+        //    default:
+        //        throw new System.Exception("invalid playerId in isConcensus");
+        //}
+        //return teammate;
     }
 
     /// <param name="forcingPlayer">player that contains the objective that will be used for the entire team</param>
     private void forceConcensus(PlayerId forcingPlayer)
     {
         PlayerId teammate = getTeammate(forcingPlayer);
-        if (Globals.Instance.Objective.ContainsKey(teammate))
+        if (this.objective.ContainsKey(teammate) && this.objective.ContainsKey(forcingPlayer))
         {
-            Debug.Log(Globals.Instance.Objective[forcingPlayer] + ":1:" + Globals.Instance.Objective[teammate]);
-            Globals.Instance.Objective[teammate] = Globals.Instance.Objective[forcingPlayer];
-            Debug.Log(Globals.Instance.Objective[forcingPlayer] + ":2:" + Globals.Instance.Objective[teammate]);
-
+            Debug.Log(this.objective[forcingPlayer] + ":1:" + this.objective[teammate]);
+            this.objective[teammate] = this.objective[forcingPlayer];
+            Debug.Log(this.objective[forcingPlayer] + ":2:" + this.objective[teammate]);
+            // apply to team
+            this.teamManager.GetTeam(forcingPlayer).objective = this.objective[forcingPlayer];
         }
     }
     #endregion [ Concensus ]
@@ -176,14 +192,14 @@ public class SelectObjective : MonoBehaviour
         string players = "";
         foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
         {
-            if (Globals.Instance.Objective.ContainsKey(player))
+            if (this.objective.ContainsKey(player))
             {
-                players += player + " is " + Globals.Instance.Objective[player] + "   ";
+                players += player + " is " + this.objective[player] + "   ";
             }
         }
         Debug.Log(players);
 
-        Application.LoadLevel("Farm");
+        Application.LoadLevel(this.LevelToLoad);
     }
     #endregion [ Counter ]
 }

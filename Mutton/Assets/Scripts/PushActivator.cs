@@ -27,7 +27,13 @@ public class PushActivator : MonoBehaviour {
 		if (sheep != null) 
 		{
 			_player.PlayerState = PlayerStates.PushSheep;
-		}
+        }
+
+        SwapObjectives button = other.GetComponent<SwapObjectives>();
+        if (button != null)
+        {
+            _player.PlayerState = PlayerStates.PushButton;
+        }
 	}
 
 	void OnTriggerExit(Collider other) 
@@ -42,6 +48,12 @@ public class PushActivator : MonoBehaviour {
 		if (sheep != null && _player.PlayerState == PlayerStates.PushSheep) 
 		{
 			_player.PlayerState = PlayerStates.Trample;
-		}
+        }
+
+        SwapObjectives button = other.GetComponent<SwapObjectives>();
+        if (button != null)
+        {
+            _player.PlayerState = PlayerStates.Trample;
+        }
 	}
 }

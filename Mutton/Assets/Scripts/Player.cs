@@ -8,6 +8,7 @@ public enum PlayerStates
 	Trample,
 	PushPen,
 	PushSheep,
+    PushButton,
 };
 
 /// <summary>
@@ -17,15 +18,11 @@ public class Player : Respawnable
 {
 	public PlayerId playerId;
 	public PlayerStates playerState = PlayerStates.Trample;
-	public Material[] m_hatMaterials;
-	public int _hatMaterialIndex = 1;
 
 	public Transform playerHead;
 	public float minPlayerHeadSize = 1.0f;
 	public float maxPlayerHeadSize = 2.0f;
 
-	public SkinnedMeshRenderer meshRenderer;
-	
 	//public List<PlayerStates> _stateList; //@@ Add list of states to fix potential bugs with sheep shed push
 
 	public PlayerStates PlayerState 
@@ -38,38 +35,35 @@ public class Player : Respawnable
 		}
 	}
 
-	// Use this for initialization
-	internal void Start () 
-	{
-		this.scoreManager = FindObjectOfType<ScoreManager>();
+    //float GetHeadScale()
+    //{
+    //    float total = (float)this.scoreManager.GetTotalScore ();
 
-		//@@ Potential memory leak
-		Material[] copyMaterials = meshRenderer.materials;
-
-		copyMaterials[_hatMaterialIndex] = m_hatMaterials [(int)playerId - 1];
-
-		meshRenderer.materials = copyMaterials;
-	}
-
-	float GetHeadScale()
-	{
-		float total = (float)ScoreManager.instance.GetTotalScore ();
-
-		float scale = total < float.Epsilon ? 0.0f : ((float)ScoreManager.instance.GetScore (playerId) / total);
-		return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
-	}
+    //    float scale = total < float.Epsilon ? 0.0f : (this.scoreManager.GetScore (playerId) / total);
+    //    return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
+    //}
 
 	public override void Update () 
 	{
 		base.Update ();
 
-		float scale = GetHeadScale();
+	    float scale = 1f;//GetHeadScale();
 
 		playerHead.transform.localScale = new Vector3(scale,scale,scale);
 	}
 
 
 	private ScoreManager scoreManager;
+
+
+    /// <summary>
+    /// Initialize script state.
+    /// </summary>
+    internal void Start()
+    {
+		this.scoreManager = FindObjectOfType<ScoreManager>();
+    }
+	
 
 	public void Score(ScoreType scoreType)
 	{

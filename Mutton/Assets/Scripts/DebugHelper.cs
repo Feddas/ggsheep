@@ -11,12 +11,13 @@ public class DebugHelper : MonoBehaviour
     /// </summary>
     internal void Start()
     {
-		if (Globals.Instance.Objective.Count < 1)
-		{
-			foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
-			{
-				Globals.Instance.Objective[player] = (ScoreType)Random.Range(0, 4);
-			}
-		}
+        //var teamManager = FindObjectOfType<TeamManager>();
+        //if (teamManager.teams.Count < 1)
+        //{
+        //    foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
+        //    {
+        //        Globals.Instance.Objective[player] = (ScoreType)Random.Range(0, 4);
+        //    }
+        //}
     }
 }

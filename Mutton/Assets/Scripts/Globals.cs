@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/*
 public class Globals
 {
     public Dictionary<PlayerId, ScoreType> Objective = new Dictionary<PlayerId, ScoreType>();
@@ -18,3 +19,4 @@ public class Globals
     }
     private static Globals instance;
 }
+*/
