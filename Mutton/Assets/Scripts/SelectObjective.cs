@@ -78,6 +78,10 @@ public class SelectObjective : MonoBehaviour
                 this.objective[player] != objective)
             {
                 this.objective[player] = objective;
+
+                // apply to team
+                this.teamManager.GetTeam(player).objective = objective;
+
                 updateConcensus(player);
                 audio.Stop();
                 audio.pitch = (float)player / 2f;
@@ -143,25 +147,25 @@ public class SelectObjective : MonoBehaviour
     private PlayerId getTeammate(PlayerId player)
     {
         return this.teamManager.GetTeam(player).members.First(x => x != player);//.Select(x => x != player).First();
-        PlayerId teammate;
-        switch (player)
-        {
-            case PlayerId.One:
-                teammate = PlayerId.Three;
-                break;
-            case PlayerId.Two:
-                teammate = PlayerId.Four;
-                break;
-            case PlayerId.Three:
-                teammate = PlayerId.One;
-                break;
-            case PlayerId.Four:
-                teammate = PlayerId.Two;
-                break;
-            default:
-                throw new System.Exception("invalid playerId in isConcensus");
-        }
-        return teammate;
+        //PlayerId teammate;
+        //switch (player)
+        //{
+        //    case PlayerId.One:
+        //        teammate = PlayerId.Three;
+        //        break;
+        //    case PlayerId.Two:
+        //        teammate = PlayerId.Four;
+        //        break;
+        //    case PlayerId.Three:
+        //        teammate = PlayerId.One;
+        //        break;
+        //    case PlayerId.Four:
+        //        teammate = PlayerId.Two;
+        //        break;
+        //    default:
+        //        throw new System.Exception("invalid playerId in isConcensus");
+        //}
+        //return teammate;
     }
 
     /// <param name="forcingPlayer">player that contains the objective that will be used for the entire team</param>
@@ -173,11 +177,9 @@ public class SelectObjective : MonoBehaviour
             Debug.Log(this.objective[forcingPlayer] + ":1:" + this.objective[teammate]);
             this.objective[teammate] = this.objective[forcingPlayer];
             Debug.Log(this.objective[forcingPlayer] + ":2:" + this.objective[teammate]);
-
+            // apply to team
+            this.teamManager.GetTeam(forcingPlayer).objective = this.objective[forcingPlayer];
         }
-
-        // apply to team
-        this.teamManager.GetTeam(forcingPlayer).objective = this.objective[forcingPlayer];
     }
     #endregion [ Concensus ]
 
