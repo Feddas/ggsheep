@@ -6,6 +6,7 @@
 public class Grass : TileGround
 {
 	private SoundEffectManager soundEffectManager;
+
 	internal void Awake()
 	{
 		this.soundEffectManager = FindObjectOfType<SoundEffectManager>();
