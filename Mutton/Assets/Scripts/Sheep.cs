@@ -31,8 +31,7 @@ public class Sheep : Respawnable
 			this.lastOwner.Score(ScoreType.Capture);
 		}
 
-		Destroy(this.gameObject);
-		// TODO: spawn more sheep!
+		Respawn ();
 	}
 
 	internal void OnCollisionEnter(Collision collision) 
