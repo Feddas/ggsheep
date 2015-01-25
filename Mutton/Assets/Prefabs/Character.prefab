@@ -907,6 +907,7 @@ GameObject:
   - 33: {fileID: 3300004}
   - 136: {fileID: 13600002}
   - 23: {fileID: 2300004}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: PushActivator
   m_TagString: Untagged
@@ -1368,7 +1369,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.32000005, z: -1.38}
+  m_LocalPosition: {x: -3.73000002, y: 1.32000005, z: -1.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400118}
@@ -1822,7 +1823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62c4cb2ce3194fb9b10b5d3e1d6513f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 1
+  playerId: 2
   playerState: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1845,8 +1846,8 @@ MonoBehaviour:
   runMaxAnimationSpeed: 1
   jumpAnimationSpeed: 1.14999998
   landAnimationSpeed: 1
-  walkSpeed: 2
-  trotSpeed: 4
+  walkSpeed: 6
+  trotSpeed: 6
   runSpeed: 6
   inAirControlAcceleration: 3
   jumpHeight: .5
@@ -1855,6 +1856,18 @@ MonoBehaviour:
   rotateSpeed: 500
   trotAfterSeconds: 3
   canJump: 1
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e01e4d3f6d54146b27cb597767b623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 11400000}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

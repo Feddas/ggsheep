@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Sheep class.
 /// </summary>
-public class Sheep : MonoBehaviour
+public class Sheep : Respawnable
 {
 	public Player lastOwner;
 
@@ -12,14 +12,6 @@ public class Sheep : MonoBehaviour
     /// Initialize script state.
     /// </summary>
     internal void Start()
-    {
-
-    }
-
-    /// <summary>
-    /// Update script, called once per frame.
-    /// </summary>
-    internal void Update()
     {
 
     }

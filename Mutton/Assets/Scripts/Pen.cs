@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Pen class.
 /// </summary>
-public class Pen : MonoBehaviour
+public class Pen : Respawnable
 {
 	public Player lastOwner;
 
@@ -12,14 +12,6 @@ public class Pen : MonoBehaviour
     /// Initialize script state.
     /// </summary>
     internal void Start()
-    {
-
-    }
-
-    /// <summary>
-    /// Update script, called once per frame.
-    /// </summary>
-    internal void Update()
     {
 
     }

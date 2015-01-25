@@ -3,24 +3,43 @@ using System.Collections;
 
 public class TileManager : MonoBehaviour {
 
-	public GameObject _levelGenerator;
-	private bool _continuousGeneration;
-	private float m_timeBetweenGeneration = 3.0f;
+	static public TileManager instance;
 
-	public bool ContinuousGeneration {
+	public GameObject _levelGenerator;
+	public bool _continuousGeneration;
+	private float m_timeBetweenGeneration = 3.0f;
+	private Vector3 m_playerOffset = new Vector3(0.0f,1.0f,0.0f);
+
+	public float _respawnHeight = -5.0f;
+
+	public float RespawnHeight {
 		get {
-			return _continuousGeneration;
+			return _respawnHeight;
+		}
+		set {
+			_respawnHeight = value;
+		}
+	}
+
+	private bool _runningGeneration = false;
+
+	public bool RunningGeneration {
+		get {
+			return _runningGeneration;
 		}
 		set 
 		{
-			_continuousGeneration = value;
-			if(_continuousGeneration )
+			if(_runningGeneration != value )
 			{
-				InvokeRepeating( "PopulateMapRaycast", 0.0f, m_timeBetweenGeneration);
-			}
-			else
-			{
-				CancelInvoke("PopulateMapRaycast");
+				_runningGeneration = value;
+				if(_runningGeneration )
+				{
+					InvokeRepeating( "PopulateMapRaycast", 0.0f, m_timeBetweenGeneration);
+				}
+				else
+				{
+					CancelInvoke("PopulateMapRaycast");
+				}
 			}
 		}
 	}
@@ -28,6 +47,8 @@ public class TileManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		instance = this;
+
 		if( _levelGenerator != null )
 		{
 			PopulateMapRaycast();
@@ -43,14 +64,13 @@ public class TileManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (_continuousGeneration) 
-		{
-			PopulateMapRaycast();
-		}
+		RunningGeneration = _continuousGeneration;
 	}
 
 	void ClearMap()
 	{
+		_tileCount = 0;
+
 		if( m_tiles != null )
 		{
 			for (int j=0; j<_height; ++j) 
@@ -61,6 +81,24 @@ public class TileManager : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public Vector3 GetSpawnPosition()
+	{
+		int spawnIndex = Random.Range (0, _tileCount-1);
+		int count = 0;
+
+		for (int j=0; j<_height; ++j) 
+		{
+			for (int i=0; i<_width; ++i) 
+			{
+				if( m_tiles[j,i] != null && count++ == spawnIndex)
+				{
+					return m_tiles[j,i].transform.position + m_playerOffset;
+				}
+			}
+		}
+		return Vector3.zero;
 	}
 
 	void PopulateMapRaycast()
@@ -79,11 +117,12 @@ public class TileManager : MonoBehaviour {
 			{
 				Vector3 origin = vStart + new Vector3((float)i,0.0f,(float)j);
 
-				int mask = (1 << 9);
-				if( Physics.Raycast(origin,new Vector3(0.0f,-1.0f,0.0f),mask) )
+				int mask = (1 << 10);
+				if( Physics.Raycast(origin,new Vector3(0.0f,-1.0f,0.0f),1000.0f,mask) )
 				{
 					m_tiles[j,i] = (TileGround)Instantiate(_tileGround,origin,Quaternion.identity);
 					m_tiles[j,i].transform.parent = gameObject.transform;
+					_tileCount++;
 				}
 			}
 		}
@@ -113,4 +152,6 @@ public class TileManager : MonoBehaviour {
 
 	public int _width = 30;
 	public int _height = 15;
+
+	private int _tileCount = 0;
 }

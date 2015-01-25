@@ -13,7 +13,7 @@ public enum PlayerStates
 /// <summary>
 /// Player class.
 /// </summary>
-public class Player : MonoBehaviour
+public class Player : Respawnable
 {
 	public PlayerId playerId;
 	public PlayerStates playerState = PlayerStates.Trample;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
 	private ScoreManager scoreManager;
 
+
     /// <summary>
     /// Initialize script state.
     /// </summary>
@@ -40,14 +41,7 @@ public class Player : MonoBehaviour
     {
 		this.scoreManager = FindObjectOfType<ScoreManager>();
     }
-
-    /// <summary>
-    /// Update script, called once per frame.
-    /// </summary>
-    internal void Update()
-    {
-
-    }
+	
 
 	public void Score(ScoreType scoreType)
 	{

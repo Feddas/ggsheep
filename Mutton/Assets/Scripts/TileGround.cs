@@ -18,11 +18,6 @@ public class TileGround : MonoBehaviour
 	void Start () {
 		SetState (_state);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void SetState(ETileState state)
 	{
