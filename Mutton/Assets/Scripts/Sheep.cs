@@ -45,4 +45,11 @@ public class Sheep : Respawnable
             this.lastOwner = player;
 		}
 	}
+
+	public override void Respawn()
+	{
+		base.Respawn ();
+
+		this.lastOwner = null;
+	}
 }

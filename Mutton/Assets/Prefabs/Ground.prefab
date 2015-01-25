@@ -381,9 +381,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e4d34b765984c34aea56343a821ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _materials: []
+  _tileMeshes: []
+  _state: 1
   _dirt: {fileID: 100000}
   _grass: {fileID: 100020}
-  _state: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

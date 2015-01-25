@@ -621,7 +621,7 @@ MonoBehaviour:
   playerId: 1
   playerState: 0
   m_hatMaterials:
-  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
+  - {fileID: 2100000, guid: 3f375c6354a69c44aa4476a9787f258a, type: 2}
   - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
   - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
   - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
@@ -699,7 +699,7 @@ SkinnedMeshRenderer:
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: 31b9d0465fef84d4987105a6ac00a368, type: 2}
-  - {fileID: 2100000, guid: d7b94fb9fac50424a9247bb631efec25, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

@@ -100,7 +100,7 @@ public class TileManager : MonoBehaviour
 		for(int i=0;i<numberPen;++i)
 		{
 			Vector3 pos = GetSpawnPosition();
-			Pen pen = (Instantiate(_pen,pos,Quaternion.identity) as GameObject).GetComponent<Pen>();
+			GameObject pen = (Instantiate(_pen,pos,Quaternion.identity) as GameObject);
 			pen.transform.parent = gameObject.transform;
 		}
 	}

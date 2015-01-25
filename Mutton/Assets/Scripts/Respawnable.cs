@@ -26,10 +26,26 @@ public class Respawnable : MonoBehaviour {
 
 	public virtual void Respawn()
 	{
+		ResetPhysics ();
+
 		Vector3 vSpawnPos = TileManager.instance.GetSpawnPosition ();
 		if (vSpawnPos == Vector3.zero)
 			transform.position = m_respawnPoint;
 		else
 			transform.position = vSpawnPos;
+	}
+
+	void ResetPhysics()
+	{
+		if( rigidbody != null )
+		{
+			rigidbody.velocity = new Vector3(0f,0f,0f); 
+			rigidbody.angularVelocity = new Vector3(0f,0f,0f);
+			transform.rotation = Quaternion.Euler(new Vector3(0f,0f,0f));
+		
+			//Point the player random 
+			float angle = Random.Range(0.0f,Mathf.PI * 2.0f);
+			transform.RotateAround(new Vector3(0.0f,1.0f,0.0f),angle);
+		}
 	}
 }
