@@ -5,6 +5,12 @@
 /// </summary>
 public class Grass : TileGround
 {
+	private SoundEffectManager soundEffectManager;
+	internal void Awake()
+	{
+		this.soundEffectManager = FindObjectOfType<SoundEffectManager>();
+	}
+
 	internal void OnTriggerEnter(Collider other) 
 	{
 		//Debug.Log ("TRIGGER ENTER");
@@ -15,6 +21,7 @@ public class Grass : TileGround
 			{
 				player.Score(ScoreType.Trample);
 				SetState(ETileState.dirt);
+				this.soundEffectManager.Play(SoundEffectType.Step);
 				return;
 			}
 		}
@@ -26,6 +33,7 @@ public class Grass : TileGround
 			{
 				pen.Plant();
 				SetState(ETileState.grass);
+				this.soundEffectManager.Play(SoundEffectType.Plant);
 				return;
 			}
 		}
@@ -37,6 +45,7 @@ public class Grass : TileGround
 			{
 				sheep.Eat();
 				SetState(ETileState.dirt);
+				this.soundEffectManager.Play(SoundEffectType.Baa);
 				return;
 			}
 		}

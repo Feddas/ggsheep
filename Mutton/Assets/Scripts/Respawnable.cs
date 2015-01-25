@@ -19,6 +19,11 @@ public class Respawnable : MonoBehaviour {
 	{
 		if (transform.position.y < TileManager.instance.RespawnHeight) 
 		{
+			if (this is Sheep)
+			{
+				(this as Sheep).soundEffectManager.Play(SoundEffectType.KillMe);
+			}
+
 			Respawn ();
 		}
 	

@@ -8,12 +8,14 @@ public class Sheep : Respawnable
 {
 	public Player lastOwner;
 
+	public SoundEffectManager soundEffectManager;
+
     /// <summary>
     /// Initialize script state.
     /// </summary>
     internal void Start()
     {
-
+		this.soundEffectManager = FindObjectOfType<SoundEffectManager>();
     }
 
 	public void Eat()
@@ -29,6 +31,7 @@ public class Sheep : Respawnable
 		if (this.lastOwner != null)
 		{
 			this.lastOwner.Score(ScoreType.Capture);
+			this.soundEffectManager.Play(SoundEffectType.Gotcha);
 		}
 
 		Respawn ();
@@ -40,9 +43,6 @@ public class Sheep : Respawnable
 		if (player != null)
 		{
             this.lastOwner = player;
-            audio.Stop();
-            audio.pitch = (float)player.playerId / 2;
-            audio.Play();
 		}
 	}
 }
