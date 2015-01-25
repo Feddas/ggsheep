@@ -14,9 +14,12 @@ public class SwapObjectives : MonoBehaviour
     private float secondsLeftToActivate;
     private Player firstButtonPusher;
 
+    private TeamManager teamManager;
+
     #region [ Unity Events ]
     void Start()
     {
+        this.teamManager = FindObjectOfType<TeamManager>();
         secondsLeftToActivate = SecondsToActivate;
     }
 
@@ -56,7 +59,7 @@ public class SwapObjectives : MonoBehaviour
         reset();
         Debug.Log("Swapping! (if there is more than 1 team)");
         // TODO: amazing swap animation
-        
+        /*
         // determine which players are active
         IList<PlayerId> activePlayers = new List<PlayerId>();
         foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
@@ -81,17 +84,23 @@ public class SwapObjectives : MonoBehaviour
         // get the teams objective
         ScoreType team1Objective = Globals.Instance.Objective[team1player];
         ScoreType team2Objective = Globals.Instance.Objective[team2player];
+        */
+        var team1Objective = this.teamManager.teams[0].objective;
+        var team2Objective = this.teamManager.teams[1].objective;
 
         // after all that, it's finally time to swap!
         Debug.Log("before swap Team1 obj: " + team1Objective + " Team2 obj: " + team2Objective);
-        foreach (var player in activePlayers)
-        {
-            if ((int)player < 2)
-                Globals.Instance.Objective[player] = team2Objective;
-            else
-                Globals.Instance.Objective[player] = team1Objective;
-        }
-        Debug.Log("after swap Team1 obj: " + Globals.Instance.Objective[team1player] + " Team2 obj: " + Globals.Instance.Objective[team2player]);
+        //foreach (var player in activePlayers)
+        //{
+        //    if ((int)player < 2)
+        //        Globals.Instance.Objective[player] = team2Objective;
+        //    else
+        //        Globals.Instance.Objective[player] = team1Objective;
+        //}
+        this.teamManager.teams[0].objective = team2Objective;
+        this.teamManager.teams[1].objective = team1Objective;
+
+        Debug.Log("after swap Team1 obj: " + this.teamManager.teams[0].objective + " Team2 obj: " + this.teamManager.teams[1].objective);
     }
 
     private void reset()
