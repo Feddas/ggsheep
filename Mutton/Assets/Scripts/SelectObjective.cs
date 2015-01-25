@@ -68,19 +68,22 @@ public class SelectObjective : MonoBehaviour
         {
             DirectionEnum dir = getDirection(xAxis, yAxis);
             var objective = ObjectiveUiMap[dir];
-            bool newPlayer = !this.objective.ContainsKey(player);
+            bool newPlayer = this.objective.ContainsKey(player) == false;
+
+            // enable player icon
             if (newPlayer)
             {
                 counterOn = true;
                 enablePlayer(player);
             }
-            if (newPlayer ||
-                this.objective[player] != objective)
+
+            // update objective
+            if (newPlayer || this.objective[player] != objective)
             {
                 this.objective[player] = objective;
 
                 // apply to team
-                this.teamManager.GetTeam(player).objective = objective;
+                //this.teamManager.GetTeam(player).objective = objective;
 
                 updateConcensus(player);
                 audio.Stop();
@@ -115,6 +118,7 @@ public class SelectObjective : MonoBehaviour
         Color playerColor = PlayerIcons[(int)player - 1].color;
         playerColor.a = 1f;
         PlayerIcons[(int)player - 1].color = playerColor;
+        //Debug.Log("enabled player " + player);
     }
     #endregion [ Change Objective ]
 

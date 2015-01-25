@@ -58,7 +58,9 @@ public class SwapObjectives : MonoBehaviour
     {
         reset();
         Debug.Log("Swapping! (if there is more than 1 team)");
-        // TODO: amazing swap animation
+        var popup = GameObject.FindObjectOfType<Popup>();
+        if (popup != null)
+            popup.Show("Objectives Swapped!");
         /*
         // determine which players are active
         IList<PlayerId> activePlayers = new List<PlayerId>();

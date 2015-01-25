@@ -38,7 +38,11 @@ public class ScoreManager : MonoBehaviour
 
     public GameOverScreen gameOverScreen;
 
-    public int GetScore(PlayerId playerId)
+	public TeamManager teamManager;
+
+	public int maxHeadSizeReferenceScore = 100;
+
+    public int GetTeamScore(PlayerId playerId)
     {
 		var teamNumber = this.teamManager.GetTeamNumber(playerId);
 		
@@ -47,12 +51,12 @@ public class ScoreManager : MonoBehaviour
 		return scores[teamNumber][scoreType];
     }
 
-    public int GetTotalScore()
+    public int GetTotalTeamScore(PlayerId playerId)
     {
-        return scores.Sum(x => x.Value.Sum(y => y.Value));
-    }
+		var teamNumber = this.teamManager.GetTeamNumber(playerId);
 
-    public TeamManager teamManager;
+		return scores[teamNumber].Sum(x => x.Value);
+    }
 
     /// <summary>
     /// Each player's score for each score type.
