@@ -39,19 +39,19 @@ public class Player : Respawnable
 		}
 	}
 
-    //float GetHeadScale()
-    //{
-    //    float total = (float)this.scoreManager.GetTotalScore ();
+    float GetHeadScale()
+    {
+        float total = (float)this.scoreManager.GetTotalScore ();
 
-    //    float scale = total < float.Epsilon ? 0.0f : (this.scoreManager.GetScore (playerId) / total);
-    //    return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
-    //}
+        float scale = total < float.Epsilon ? 0.0f : (this.scoreManager.GetScore (playerId) / total);
+        return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
+    }
 
 	public override void Update () 
 	{
 		base.Update ();
 
-	    float scale = 1f;//GetHeadScale();
+		float scale = GetHeadScale();
 
 		playerHead.transform.localScale = new Vector3(scale,scale,scale);
 	}

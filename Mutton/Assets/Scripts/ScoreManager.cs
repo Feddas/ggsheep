@@ -38,24 +38,19 @@ public class ScoreManager : MonoBehaviour
 
     public GameOverScreen gameOverScreen;
 
-    //public int GetScore(PlayerId playerId)
-    //{
-    //    int score = 0;
+    public int GetScore(PlayerId playerId)
+    {
+		var teamNumber = this.teamManager.GetTeamNumber(playerId);
+		
+		ScoreType scoreType = this.teamManager.teams[teamNumber].objective;
+		
+		return scores[teamNumber][scoreType];
+    }
 
-    //    Dictionary<ScoreType, int> dic = playerScores [playerId];
-
-    //    foreach(int val in dic.Values)
-    //    {
-    //        score += val;
-    //    }
-
-    //    return score;
-    //}
-
-    //public int GetTotalScore()
-    //{
-    //    return scores.Sum(x => x.Value.Sum(y => y.Value));
-    //}
+    public int GetTotalScore()
+    {
+        return scores.Sum(x => x.Value.Sum(y => y.Value));
+    }
 
     public TeamManager teamManager;
 

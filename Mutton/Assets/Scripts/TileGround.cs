@@ -12,6 +12,8 @@ public class TileGround : MonoBehaviour
 	public Material[] _materials;
 	public MeshRenderer[] _tileMeshes;
 	public ETileState _state = ETileState.grass;
+	public GameObject _dirt;
+	public GameObject _grass;
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +39,25 @@ public class TileGround : MonoBehaviour
 			return;
 		}
 
-		SetMaterial((int)state);
-
+		//SetMaterial((int)state);
+		
+		switch(state)
+		{
+		case ETileState.dirt:
+		{
+			_dirt.SetActive(true);
+			_grass.SetActive(false);
+			break;
+		}
+		case ETileState.grass:
+		{
+			_dirt.SetActive(false);
+			_grass.SetActive(true);
+			break;
+		}
+		}
+		
 		_state = state;
 	}
+
 }
