@@ -15,7 +15,7 @@ public class Respawnable : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public virtual void Update () 
 	{
 		if (transform.position.y < TileManager.instance.RespawnHeight) 
 		{

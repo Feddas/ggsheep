@@ -10,6 +10,13 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
+	static public ScoreManager instance;
+
+	void Awake()
+	{
+		instance = this;
+	}
+
 	public int tramplePoints = 1;
 	public int eatPoints = 2;
 	public int capturePoints = 25;
@@ -27,6 +34,32 @@ public class ScoreManager : MonoBehaviour
 	public Text timer;
 
 	public Popup popup;
+
+	public int GetScore(PlayerId playerId)
+	{
+		int score = 0;
+
+		Dictionary<ScoreType, int> dic = playerScores [playerId];
+
+		foreach(int val in dic.Values)
+		{
+			score += val;
+		}
+
+		return score;
+	}
+
+	public int GetTotalScore()
+	{
+		int score = 0;
+
+		foreach( PlayerId playerId in playerScores.Keys )
+		{
+			score += GetScore(playerId);
+		}
+		
+		return score;
+	}
 
     /// <summary>
     /// Each player's score for each score type.

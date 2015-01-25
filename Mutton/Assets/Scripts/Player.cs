@@ -17,6 +17,10 @@ public class Player : Respawnable
 {
 	public PlayerId playerId;
 	public PlayerStates playerState = PlayerStates.Trample;
+
+	public Transform playerHead;
+	public float minPlayerHeadSize = 1.0f;
+	public float maxPlayerHeadSize = 2.0f;
 	
 	//public List<PlayerStates> _stateList; //@@ Add list of states to fix potential bugs with sheep shed push
 
@@ -28,6 +32,23 @@ public class Player : Respawnable
 		set {
 			playerState = value;
 		}
+	}
+
+	float GetHeadScale()
+	{
+		float total = (float)ScoreManager.instance.GetTotalScore ();
+
+		float scale = total < float.Epsilon ? 0.0f : ((float)ScoreManager.instance.GetScore (playerId) / total);
+		return minPlayerHeadSize + (maxPlayerHeadSize - minPlayerHeadSize) * scale;
+	}
+
+	public override void Update () 
+	{
+		base.Update ();
+
+		float scale = GetHeadScale();
+
+		playerHead.transform.localScale = new Vector3(scale,scale,scale);
 	}
 
 
