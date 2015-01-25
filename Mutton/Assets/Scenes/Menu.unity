@@ -261,6 +261,51 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 362101075}
+--- !u!1 &363413336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 158082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+  m_PrefabInternal: {fileID: 591135100}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 363413338}
+  - 114: {fileID: 363413337}
+  m_Layer: 0
+  m_Name: TeamManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &363413337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458082, guid: 2e67c9f80ca193c43adb868f3ff84de9,
+    type: 2}
+  m_PrefabInternal: {fileID: 591135100}
+  m_GameObject: {fileID: 363413336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27744dff85b754459e9fdf61e4aaeb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teams:
+  - members: 0100000003000000
+    objective: 0
+  - members: 0200000004000000
+    objective: 0
+--- !u!4 &363413338
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+  m_PrefabInternal: {fileID: 591135100}
+  m_GameObject: {fileID: 363413336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &371892390
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +501,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1001 &591135100
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 458082, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2e67c9f80ca193c43adb868f3ff84de9, type: 2}
+  m_RootGameObject: {fileID: 363413336}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &747247854
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +1035,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whisper to your teammate to come to objective concensus
+  m_Text: Whisper to your teammate to come to objective consensus
 --- !u!222 &1219266657
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1012,7 +1101,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use your controllers left stick to vote on your teams secret objective
+  m_Text: Use your controller's left stick to vote on your team's secret objective
 --- !u!222 &1233784415
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1082,6 +1171,7 @@ MonoBehaviour:
   - {fileID: 1341233504}
   - {fileID: 371892392}
   - {fileID: 362101077}
+  LevelToLoad: branch
 --- !u!114 &1250931610
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,3 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
   - enabled: 1
     path: Assets/Scenes/Farm.unity
+  - enabled: 1
+    path: Assets/Scenes/ArtTest.unity
+  - enabled: 1
+    path: Assets/Scenes/branch.unity
+  - enabled: 1
+    path: Assets/Scenes/greg.unity
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+  - enabled: 1
+    path: Assets/Scenes/Shawn.unity

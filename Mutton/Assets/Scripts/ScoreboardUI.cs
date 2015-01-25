@@ -45,6 +45,7 @@ public class ScoreboardUI : MonoBehaviour
 				return this.plant;
 		}
 		
+        // TODO: gate on team selecting an objective
 		throw new InvalidEnumArgumentException("No UI component defined for ScoreType " + scoreType);
 	}
 }

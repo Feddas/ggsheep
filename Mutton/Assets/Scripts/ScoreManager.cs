@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,12 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
-	static public ScoreManager instance;
+    //static public ScoreManager instance;
 
-	void Awake()
-	{
-		instance = this;
-	}
+    //void Awake()
+    //{
+    //    instance = this;
+    //}
 
 	public int tramplePoints = 1;
 	public int eatPoints = 2;
@@ -35,37 +36,36 @@ public class ScoreManager : MonoBehaviour
 
 	public Popup popup;
 
-	public int GetScore(PlayerId playerId)
-	{
-		int score = 0;
+    public GameOverScreen gameOverScreen;
 
-		Dictionary<ScoreType, int> dic = playerScores [playerId];
+    //public int GetScore(PlayerId playerId)
+    //{
+    //    int score = 0;
 
-		foreach(int val in dic.Values)
-		{
-			score += val;
-		}
+    //    Dictionary<ScoreType, int> dic = playerScores [playerId];
 
-		return score;
-	}
+    //    foreach(int val in dic.Values)
+    //    {
+    //        score += val;
+    //    }
 
-	public int GetTotalScore()
-	{
-		int score = 0;
+    //    return score;
+    //}
 
-		foreach( PlayerId playerId in playerScores.Keys )
-		{
-			score += GetScore(playerId);
-		}
-		
-		return score;
-	}
+    //public int GetTotalScore()
+    //{
+    //    return scores.Sum(x => x.Value.Sum(y => y.Value));
+    //}
+
+    public TeamManager teamManager;
 
     /// <summary>
     /// Each player's score for each score type.
     /// </summary>
-	private Dictionary<PlayerId, Dictionary<ScoreType, int>> playerScores;
+	//private Dictionary<PlayerId, Dictionary<ScoreType, int>> playerScores;
 
+    private Dictionary<int, Dictionary<ScoreType, int>> scores;
+    /*
     /// <summary>
     /// This structure defines our teams.
     /// TODO: This could be configurable in a menu, or extended to include more/fewer teams with more/fewer players.
@@ -80,15 +80,28 @@ public class ScoreManager : MonoBehaviour
     /// This structure gives us the team a given player is on.
     /// </summary>
     private Dictionary<PlayerId, int> playerToTeam; 
-
+    */
     /// <summary>
     /// Initialize script state.
     /// </summary>
     internal void Start()
     {
+        this.teamManager = FindObjectOfType<TeamManager>();
         //Test persistance of Globals.cs from menu scene
         //Debug.Log("Globals instance = " + Globals.Instance.Objective[PlayerId.One] + Globals.Instance.Objective[PlayerId.Two]);
 
+        // initialize score structure
+        this.scores = new Dictionary<int, Dictionary<ScoreType, int>>();
+        for (int teamNumber = 0; teamNumber < this.teamManager.teams.Count; teamNumber++)
+        {
+            this.scores.Add(teamNumber, new Dictionary<ScoreType, int>());
+            foreach (ScoreType scoreType in Enum.GetValues(typeof(ScoreType)))
+            {
+                this.scores[teamNumber].Add(scoreType, 0);
+            }
+        }
+
+        /*
         // initialize player score structure
 		this.playerScores = new Dictionary<PlayerId, Dictionary<ScoreType, int>>();
         foreach (PlayerId playerId in Enum.GetValues(typeof(PlayerId)))
@@ -96,7 +109,10 @@ public class ScoreManager : MonoBehaviour
 			this.playerScores.Add(playerId, new Dictionary<ScoreType, int>());
 			foreach (ScoreType scoreType in Enum.GetValues(typeof(ScoreType)))
 			{
-				this.playerScores[playerId].Add(scoreType, 0);
+			    if (scoreType != ScoreType.None)
+			    {
+			        this.playerScores[playerId].Add(scoreType, 0);
+			    }
 			}
 		}
 
@@ -108,12 +124,12 @@ public class ScoreManager : MonoBehaviour
             {
                 this.playerToTeam.Add(playerId, teamNumber);
             }
-        }
+        }*/
 
 		// enable only relevant scoreboards
 		for (int teamNumber = 0; teamNumber < this.scoreboards.Count; teamNumber++)
 		{
-			this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < this.teamToPlayers.Count);
+			this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < this.teamManager.teams.Count);
 		}
 
 		//this.StartCoroutine(this.WaitAndInvoke(1f, () => this.StartCountdown()));
@@ -139,12 +155,27 @@ public class ScoreManager : MonoBehaviour
 				// finish and score game
 				this.popup.Show("Game Over!");
 
-				foreach(var player in Globals.Instance.Objective.Keys)
-				{
-					var objective = Globals.Instance.Objective[player];
-					var team = this.playerToTeam[player];
-					this.scoreboards[team].HighlightObjective(objective);
-				}
+			    int bestScore = 0;
+                int bestTeam = 0;
+			    for (int teamNumber = 0; teamNumber < this.teamManager.teams.Count; teamNumber++)
+			    {
+			        var team = this.teamManager.teams[teamNumber];
+			        this.scoreboards[teamNumber].HighlightObjective(team.objective);
+			        if (this.scores[teamNumber][team.objective] > bestScore)
+			        {
+			            bestScore = this.scores[teamNumber][team.objective];
+			            bestTeam = teamNumber;
+			        }
+			    }
+
+			    this.StartCoroutine(this.WaitAndInvoke(2f, () => this.gameOverScreen.Show(string.Format("Team {0} wins!", bestTeam + 1))));
+
+                //foreach(var player in Globals.Instance.Objective.Keys)
+                //{
+                //    var objective = Globals.Instance.Objective[player];
+                //    var team = this.playerToTeam[player];
+                //    this.scoreboards[team].HighlightObjective(objective);
+                //}
 			}
 		}
 
@@ -159,38 +190,40 @@ public class ScoreManager : MonoBehaviour
 	public void Score(PlayerId playerId, ScoreType scoreType)
 	{
         // increment player score
-		this.playerScores[playerId][scoreType] += this.ScoreModifier(scoreType);
+        var teamNumber = this.teamManager.GetTeamNumber(playerId);
+        this.scores[teamNumber][scoreType] += this.ScoreModifier(scoreType);
+		//this.playerScores[playerId][scoreType] += this.ScoreModifier(scoreType);
 
         // get player's team
-        var team = this.playerToTeam[playerId];
+        //var team = this.playerToTeam[playerId];
 
         // aggregate team score 
-        var teamScore = this.TeamScore(team, scoreType);
+        //var teamScore = this.TeamScore(team, scoreType);
 
         // get the text field for this player's team and score type and update it
-		if (team < this.scoreboards.Count && this.scoreboards[team] != null)
+		if (teamNumber < this.scoreboards.Count && this.scoreboards[teamNumber] != null)
 		{
-			this.scoreboards[team].SetScore(scoreType, teamScore);
+            this.scoreboards[teamNumber].SetScore(scoreType, this.scores[teamNumber][scoreType]);
 		}
 	}
 
-    /// <summary>
-    /// Get the team's total score in the given category.
-    /// </summary>
-    /// <param name="team"></param>
-    /// <param name="scoreType"></param>
-    /// <returns></returns>
-    private int TeamScore(int team, ScoreType scoreType)
-    {
-        var rval = 0;
-        for (var index = 0; index < this.teamToPlayers[team].Count; index++)
-        {
-            var playerId = this.teamToPlayers[team][index];
-            rval += this.playerScores[playerId][scoreType];
-        }
+    ///// <summary>
+    ///// Get the team's total score in the given category.
+    ///// </summary>
+    ///// <param name="team"></param>
+    ///// <param name="scoreType"></param>
+    ///// <returns></returns>
+    //private int TeamScore(int team, ScoreType scoreType)
+    //{
+    //    var rval = 0;
+    //    for (var index = 0; index < this.teamToPlayers[team].Count; index++)
+    //    {
+    //        var playerId = this.teamToPlayers[team][index];
+    //        rval += this.playerScores[playerId][scoreType];
+    //    }
 
-        return rval;
-    }
+    //    return rval;
+    //}
 
 	private int ScoreModifier(ScoreType scoreType)
 	{
@@ -224,15 +257,16 @@ public class ScoreManager : MonoBehaviour
 		}
 	}
 
+
 //	private void StartTimer()
 //	{
 //		Debug.Log("Start Timer");
 //		this.startTimer = true;
 //	}
 //
-//	internal IEnumerator WaitAndInvoke(float delay, Action function)
-//	{
-//		yield return new WaitForSeconds(delay);
-//		function();
-//	}
+    internal IEnumerator WaitAndInvoke(float delay, Action function)
+    {
+        yield return new WaitForSeconds(delay);
+        function();
+    }
 }

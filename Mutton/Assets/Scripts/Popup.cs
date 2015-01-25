@@ -20,10 +20,10 @@ public class Popup : MonoBehaviour
 	public void Show(string message, bool animate = true)
 	{
 		this.text.text = message;
-		if (animate)
+        this.animation.Stop();
+        this.animation.Rewind();
+        if (animate)
 		{
-			this.animation.Stop();
-			this.animation.Rewind();
 			this.animation.Play();
 		} 
 		else
