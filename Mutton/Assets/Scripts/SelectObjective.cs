@@ -26,7 +26,7 @@ public class SelectObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (counterOn)
+		if (counterOn)
         {
             SecondsToSelect -= Time.deltaTime; // start counter
             TimerText.text = string.Format("Seconds left {0:0}", SecondsToSelect);
@@ -42,23 +42,21 @@ public class SelectObjective : MonoBehaviour
 
     private void SetObjective(PlayerId player)
     {
-        float xAxis = Input.GetAxisRaw("HorizontalGP" + (int)player);
-        float yAxis = Input.GetAxisRaw("VerticalGP" + (int)player);
-        if (xAxis != 0 && yAxis != 0)
+        float xAxis = Input.GetAxis("HorizontalGP" + (int)player);
+        float yAxis = Input.GetAxis("VerticalGP" + (int)player);
+        if (xAxis != 0 || yAxis != 0)
         {
-            if (Globals.Instance.Objective.ContainsKey(player) == false)
+			DirectionEnum dir = getDirection(xAxis, yAxis);
+			var objective = Objectives[dir];
+            if (!Globals.Instance.Objective.ContainsKey(player) ||
+			    Globals.Instance.Objective[player] != objective)
             {
+				counterOn = true;
+				Globals.Instance.Objective[player] = objective;
                 audio.Stop();
-                audio.pitch = (float)player / 2;
+                audio.pitch = (float)player / 2f;
                 audio.Play();
             }
-
-            counterOn = true;
-            DirectionEnum dir = getDirection(xAxis, yAxis);
-
-            Globals.Instance.Objective[player] = Objectives[dir];
-            // Debug.Log(xAxis + ", " + yAxis
-            //    + dir + " " + player + ":" + Globals.Instance.Objective[player]);
         }
     }
 
