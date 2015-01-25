@@ -9,11 +9,6 @@ public class Respawnable : MonoBehaviour {
 		m_respawnPoint = transform.position;
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
 	public virtual void Update () 
 	{

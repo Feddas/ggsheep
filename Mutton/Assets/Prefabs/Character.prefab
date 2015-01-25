@@ -324,7 +324,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: -.0424946249, y: .705828726, z: -.645371556, w: -.288955986}
+  m_LocalRotation: {x: -.0424946286, y: .705828786, z: -.645371616, w: -.288956016}
   m_LocalPosition: {x: -.0106216632, y: .00400817487, z: -.426962584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -469,7 +469,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .296638489, y: .305000007, z: -.103458405}
+  m_LocalPosition: {x: .300000012, y: .310000002, z: -.100000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400118}
@@ -620,9 +620,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 1
   playerState: 0
+  m_hatMaterials:
+  - {fileID: 2100000, guid: db2849afc93bae647a49f51aa737d0db, type: 2}
+  - {fileID: 2100000, guid: 08b75dcd2a4b8a2469ee219a9969da67, type: 2}
+  - {fileID: 2100000, guid: 81008072e180a3548be7f7c592dd1a32, type: 2}
+  - {fileID: 2100000, guid: 7e2c262ef5215d144b70f0d8f76b08d6, type: 2}
+  _hatMaterialIndex: 1
   playerHead: {fileID: 400012}
   minPlayerHeadSize: 1
   maxPlayerHeadSize: 2
+  meshRenderer: {fileID: 13700000}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

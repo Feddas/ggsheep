@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class PlayerMgr : MonoBehaviour 
 {
@@ -7,6 +8,7 @@ public class PlayerMgr : MonoBehaviour
 	void Awake()
 	{
 		_players = GameObject.FindObjectsOfType<Player> ();
+		_players = _players.OrderBy (player => player.name).ToArray();
 	}
 
 	// Use this for initialization
