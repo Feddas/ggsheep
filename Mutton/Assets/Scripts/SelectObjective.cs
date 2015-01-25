@@ -10,6 +10,8 @@ public class SelectObjective : MonoBehaviour
     private Text TimerText;
     [SerializeField]
     private float SecondsToSelect = 30;
+    [SerializeField]
+    private Image[] PlayerIcons;
 
     Dictionary<DirectionEnum, ScoreType> Objectives = new Dictionary<DirectionEnum, ScoreType>()
     {
@@ -48,7 +50,12 @@ public class SelectObjective : MonoBehaviour
         {
 			DirectionEnum dir = getDirection(xAxis, yAxis);
 			var objective = Objectives[dir];
-            if (!Globals.Instance.Objective.ContainsKey(player) ||
+            bool newPlayer = Globals.Instance.Objective.ContainsKey(player) == false;
+            if (newPlayer)
+            {
+                enablePlayer(player);
+            }
+            if ( newPlayer ||
 			    Globals.Instance.Objective[player] != objective)
             {
 				counterOn = true;
@@ -58,6 +65,13 @@ public class SelectObjective : MonoBehaviour
                 audio.Play();
             }
         }
+    }
+
+    private void enablePlayer(PlayerId player)
+    {
+        Color playerColor = PlayerIcons[(int)player - 1].color;
+        playerColor.a = 255;
+        PlayerIcons[(int)player - 1].color = playerColor;
     }
 
     private DirectionEnum getDirection(float horizontal, float vertical)
@@ -87,7 +101,7 @@ public class SelectObjective : MonoBehaviour
         {
             if (Globals.Instance.Objective.ContainsKey(player))
             {
-                players += player + " is " + Globals.Instance.Objective[player] + System.Environment.NewLine;
+                players += player + " is " + Globals.Instance.Objective[player] + "   ";
             }
         }
         Debug.Log(players);
