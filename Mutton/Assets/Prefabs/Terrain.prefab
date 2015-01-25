@@ -285,7 +285,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -305,7 +305,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -345,7 +345,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -365,7 +365,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -385,7 +385,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -405,7 +405,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -570,9 +570,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a08ea2a605a432b9d1446b2cd50e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sheep: {fileID: 110952, guid: c38716e31b3c77f47aeef58162ba9a19, type: 2}
+  _pen: {fileID: 189110, guid: fef8e9012e6fa4a2e9f91718444021ab, type: 2}
   _levelGenerator: {fileID: 100008}
   _continuousGeneration: 0
   m_playerOffset: {x: 0, y: 10, z: 0}
+  boundSheep:
+    _min: 4
+    _max: 12
+  boundPen:
+    _min: 1
+    _max: 2
   _respawnHeight: -5
   _tileGround: {fileID: 11400000, guid: 708497569fc944ce784d2d72adc818f2, type: 2}
   _width: 25
