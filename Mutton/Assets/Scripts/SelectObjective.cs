@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class SelectObjective : MonoBehaviour
 {
-    public Text TimerText;
-    public float SecondsToSelect = 30;
+    [SerializeField]
+    private Text TimerText;
+    [SerializeField]
+    private float SecondsToSelect = 30;
 
-    System.Collections.Generic.Dictionary<DirectionEnum, ScoreType> Objectives = new Dictionary<DirectionEnum, ScoreType>()
+    Dictionary<DirectionEnum, ScoreType> Objectives = new Dictionary<DirectionEnum, ScoreType>()
     {
         {DirectionEnum.Up, ScoreType.Eat},
         {DirectionEnum.Down, ScoreType.Plant},
@@ -43,6 +46,13 @@ public class SelectObjective : MonoBehaviour
         float yAxis = Input.GetAxisRaw("VerticalGP" + (int)player);
         if (xAxis != 0 && yAxis != 0)
         {
+            if (Globals.Instance.Objective.ContainsKey(player) == false)
+            {
+                audio.Stop();
+                audio.pitch = (float)player / 2;
+                audio.Play();
+            }
+
             counterOn = true;
             DirectionEnum dir = getDirection(xAxis, yAxis);
 

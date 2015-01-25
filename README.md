@@ -12,3 +12,7 @@ Global Game Jam 2015 game about sheep
 2. Sheep eat grass by the player pushing the sheep around.
 3. Sheep can be pushed into the pen.
 4. Player can push the pen around to grow grass.
+
+## fair use credits:
+https://www.freesound.org/people/esperar/sounds/171152/
+https://www.freesound.org/people/caquet/sounds/136298/
