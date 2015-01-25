@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
 
 	public int maxHeadSizeReferenceScore = 100;
 
-    public int GetScore(PlayerId playerId)
+    public int GetTeamScore(PlayerId playerId)
     {
 		var teamNumber = this.teamManager.GetTeamNumber(playerId);
 		
@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
 		return scores[teamNumber][scoreType];
     }
 
-    public int GetTeamScore(PlayerId playerId)
+    public int GetTotalTeamScore(PlayerId playerId)
     {
 		var teamNumber = this.teamManager.GetTeamNumber(playerId);
 
