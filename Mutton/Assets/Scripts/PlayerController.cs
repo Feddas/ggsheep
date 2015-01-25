@@ -87,10 +87,7 @@ public class PlayerController : MonoBehaviour
 	
 	// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	private float lastJumpStartHeight= 0.0f;
-	
-	
-	private Vector3 inAirVelocity= Vector3.zero;
-	
+
 	private float lastGroundedTime= 0.0f;
 	
 	
@@ -230,10 +227,7 @@ public AnimationClip jumpPoseAnimation;
 			// Lock camera while in air
 			if (jumping)
 				lockCameraTimer = 0.0f;
-			
-			if (isMoving)
-				inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
-		}
+					}
 		
 		
 		
@@ -298,104 +292,29 @@ public AnimationClip jumpPoseAnimation;
 	}
 	
 	void Update ()
-	{
-		
+	{		
 		if (!isControllable)
 		{
 			// kill all inputs if not controllable.
 			Input.ResetInputAxes();
 		}
 		
-		if (Input.GetButtonDown ("Jump"))
-		{
-			lastJumpButtonTime = Time.time;
-		}
-		
 		UpdateSmoothedMovementDirection();
-		
-		// Apply gravity
-		// - extra power jump modifies gravity
-		// - controlledDescent mode modifies gravity
-		ApplyGravity ();
-		
-		// Apply jumping logic
-		ApplyJumping ();
+
+		ApplyGravity();
 		
 		// Calculate actual motion
-		Vector3 movement= moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
+		Vector3 movement= moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0);
 		movement *= Time.deltaTime;
+
 		
 		// Move the controller
 		CharacterController controller = GetComponent<CharacterController>();
+		if (movement.sqrMagnitude > 0.01f) 
+		{
+			controller.transform.LookAt (controller.transform.position + movement);
+		}
 		collisionFlags = controller.Move(movement);
-		
-		// ANIMATION sector
-		if(_animation) {
-			if(_characterState == CharacterState.Jumping) 
-			{
-				if(!jumpingReachedApex) {
-					_animation[jumpPoseAnimation.name].speed = jumpAnimationSpeed;
-					_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
-					_animation.CrossFade(jumpPoseAnimation.name);
-				} else {
-					_animation[jumpPoseAnimation.name].speed = -landAnimationSpeed;
-					_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
-					_animation.CrossFade(jumpPoseAnimation.name);				
-				}
-			} 
-			else 
-			{
-				if(controller.velocity.sqrMagnitude < 0.1f) {
-					_animation.CrossFade(idleAnimation.name);
-				}
-				else 
-				{
-					if(_characterState == CharacterState.Running) {
-						_animation[runAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, runMaxAnimationSpeed);
-						_animation.CrossFade(runAnimation.name);	
-					}
-					else if(_characterState == CharacterState.Trotting) {
-						_animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, trotMaxAnimationSpeed);
-						_animation.CrossFade(walkAnimation.name);	
-					}
-					else if(_characterState == CharacterState.Walking) {
-						_animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, walkMaxAnimationSpeed);
-						_animation.CrossFade(walkAnimation.name);	
-					}
-					
-				}
-			}
-		}
-		// ANIMATION sector
-		
-		// Set rotation to the move direction
-		if (IsGrounded())
-		{
-			
-			transform.rotation = Quaternion.LookRotation(moveDirection);
-			
-		}	
-		else
-		{
-			Vector3 xzMove= movement;
-			xzMove.y = 0;
-			if (xzMove.sqrMagnitude > 0.001f)
-			{
-				transform.rotation = Quaternion.LookRotation(xzMove);
-			}
-		}	
-		
-		// We are in jump mode but just became grounded
-		if (IsGrounded())
-		{
-			lastGroundedTime = Time.time;
-			inAirVelocity = Vector3.zero;
-			if (jumping)
-			{
-				jumping = false;
-				SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
-			}
-		}
 	}
 	
 	void OnControllerColliderHit ( ControllerColliderHit hit   )
