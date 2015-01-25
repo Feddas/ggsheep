@@ -166,6 +166,7 @@ public class TileManager : MonoBehaviour
 				{
 					m_tiles[j,i] = (TileGround)Instantiate(_tileGround,origin,Quaternion.identity);
 					m_tiles[j,i].transform.parent = gameObject.transform;
+					m_tiles[j,i].SetState((ETileState)Random.Range(0, 2));
 					_tileCount++;
 				}
 			}
