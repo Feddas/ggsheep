@@ -16,12 +16,12 @@ public class TileGround : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		SetState (_state);
+		SetState (_state, true);
 	}
 
-	public void SetState(ETileState state)
+	public void SetState(ETileState state, bool overrideState = false)
 	{
-		if (state == _state) 
+		if (!overrideState && state == _state) 
 		{
 			return;
 		}

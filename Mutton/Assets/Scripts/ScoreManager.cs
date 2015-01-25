@@ -65,6 +65,7 @@ public class ScoreManager : MonoBehaviour
 	//private Dictionary<PlayerId, Dictionary<ScoreType, int>> playerScores;
 
     private Dictionary<int, Dictionary<ScoreType, int>> scores;
+
     /*
     /// <summary>
     /// This structure defines our teams.
