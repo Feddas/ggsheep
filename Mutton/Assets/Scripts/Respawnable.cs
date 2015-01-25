@@ -44,8 +44,11 @@ public class Respawnable : MonoBehaviour {
 			transform.rotation = Quaternion.Euler(new Vector3(0f,0f,0f));
 		
 			//Point the player random 
-			float angle = Random.Range(0.0f,Mathf.PI * 2.0f);
-			transform.RotateAround(new Vector3(0.0f,1.0f,0.0f),angle);
+			if (!this is Pen)
+			{
+				float angle = Random.Range(0.0f,Mathf.PI * 2.0f);
+				transform.RotateAround(new Vector3(0.0f,1.0f,0.0f),angle);
+			}
 		}
 	}
 }

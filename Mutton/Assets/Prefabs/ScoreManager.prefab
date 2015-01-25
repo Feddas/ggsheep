@@ -44,7 +44,7 @@ MonoBehaviour:
   capturePoints: 50
   plantPoints: 1
   countdownTicks: 3
-  gameTime: 15
+  gameTime: 60
   scoreboards:
   - {fileID: 0}
   - {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
   popup: {fileID: 0}
   gameOverScreen: {fileID: 0}
   teamManager: {fileID: 0}
+  maxHeadSizeReferenceScore: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
