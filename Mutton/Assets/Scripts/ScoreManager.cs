@@ -65,6 +65,8 @@ public class ScoreManager : MonoBehaviour
 
     private Dictionary<int, Dictionary<ScoreType, int>> scores;
 
+    private SoundEffectManager cachedSoundEffects;
+
     /*
     /// <summary>
     /// This structure defines our teams.
@@ -87,6 +89,7 @@ public class ScoreManager : MonoBehaviour
     internal void Start()
     {
         this.teamManager = FindObjectOfType<TeamManager>();
+        this.cachedSoundEffects = GameObject.FindObjectOfType<SoundEffectManager>();
         //Test persistance of Globals.cs from menu scene
         //Debug.Log("Globals instance = " + Globals.Instance.Objective[PlayerId.One] + Globals.Instance.Objective[PlayerId.Two]);
 
@@ -248,6 +251,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			this.popup.Show(this.countdownTicks.ToString());
 			this.countdownTicks--;
+            cachedSoundEffects.Play(SoundEffectType.ClockTick);
 		} 
 		else
 		{

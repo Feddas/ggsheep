@@ -15,5 +15,9 @@ Global Game Jam 2015 game about sheep
 
 ## creative commons use credits:
 Baa - https://www.freesound.org/people/esperar/sounds/171152/
+
 SheepBells - https://www.freesound.org/people/caquet/sounds/136298/
+
 FolkGuitar - https://www.freesound.org/people/Dvideoguy/sounds/246315/
+
+Clock Tick - https://www.freesound.org/people/AntumDeluge/sounds/188033/

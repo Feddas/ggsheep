@@ -11,5 +11,5 @@ public enum SoundEffectType
 	Plant,
 	Gotcha,
 	KillMe,
-
+    ClockTick,
 }

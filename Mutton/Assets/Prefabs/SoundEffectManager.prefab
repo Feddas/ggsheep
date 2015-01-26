@@ -124,6 +124,9 @@ MonoBehaviour:
   - soundEffect: 4
     audioClips:
     - {fileID: 8300000, guid: cb86d6518e3124d44afd1f7ae6c972b4, type: 3}
+  - soundEffect: 5
+    audioClips:
+    - {fileID: 8300000, guid: 5c0b97ca5e3465540a02d02a7692e405, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
