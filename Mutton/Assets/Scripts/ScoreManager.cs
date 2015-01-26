@@ -192,6 +192,11 @@ public class ScoreManager : MonoBehaviour
     /// <param name="scoreType"></param>
 	public void Score(PlayerId playerId, ScoreType scoreType)
 	{
+		if (!this.startTimer)
+		{
+			return;
+		}
+
         // increment player score
         var teamNumber = this.teamManager.GetTeamNumber(playerId);
         this.scores[teamNumber][scoreType] += this.ScoreModifier(scoreType);
