@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-/*
 public class Globals
 {
-    public Dictionary<PlayerId, ScoreType> Objective = new Dictionary<PlayerId, ScoreType>();
+    //public Dictionary<PlayerId, ScoreType> Objective = new Dictionary<PlayerId, ScoreType>();
+    public TeamManager2 Teams = new TeamManager2();
 
     public static Globals Instance
     {
@@ -19,4 +19,3 @@ public class Globals
     }
     private static Globals instance;
 }
-*/

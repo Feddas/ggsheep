@@ -4,8 +4,9 @@ Global Game Jam 2015 game about sheep
 ## Game objects:
 - Player - this is what you control
 - Sheep - push these
-- Pen - push these or push things into these
+- Pen - push these pens around or push sheep into these pens
 - Grass - step on this or push things over it
+- Button - press this to swap objectives with the other team
 
 ## Each player has a secret primary goal, they can be any of the following:
 1. trample grass by the player stepping on it.

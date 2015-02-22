@@ -52,14 +52,50 @@ public class SelectObjective : MonoBehaviour
                 CounterFinished();
         }
 
-        SetObjective(PlayerId.One);
-        SetObjective(PlayerId.Two);
-        SetObjective(PlayerId.Three);
-        SetObjective(PlayerId.Four);
+        SetObjective("GP1");
+        SetObjective("GP2");
+        SetObjective("GP3");
+        SetObjective("GP4");
+        SetObjective("Wasd");  // WASD
+        SetObjective("Arrows");
+        //SetObjective(PlayerId.One);
+        //SetObjective(PlayerId.Two);
+        //SetObjective(PlayerId.Three);
+        //SetObjective(PlayerId.Four);
     }
     #endregion [ Unity Events ]
 
     #region [ Change Objective ]
+    private void SetObjective(string controllerAffix)
+    {
+        float xAxis = Input.GetAxis("Horizontal" + controllerAffix);
+        float yAxis = Input.GetAxis("Vertical" + controllerAffix);
+        if (xAxis != 0 || yAxis != 0)
+        {
+            DirectionEnum dir = getDirection(xAxis, yAxis);
+            var objective = ObjectiveUiMap[dir];
+            bool newPlayer, newObjective;
+            TeamPlayer player = Globals.Instance.Teams.ObjectiveUpdated(controllerAffix, objective, out newPlayer, out newObjective);
+
+            // enable player icon
+            if (newPlayer)
+            {
+                counterOn = true;
+                enablePlayer(player.PlayerNumber);
+            }
+
+            // update objective
+            if (newPlayer || newObjective)
+            {
+                audio.Stop();
+                audio.pitch = (float)player.PlayerNumber / 2f;
+                audio.Play();
+            }
+
+            Debug.Log("udated via " + controllerAffix + " teams: " + Globals.Instance.Teams.AllPlayers.Count());
+        }
+    }
+
     private void SetObjective(PlayerId player)
     {
         float xAxis = Input.GetAxis("HorizontalGP" + (int)player);
@@ -190,17 +226,35 @@ public class SelectObjective : MonoBehaviour
     #region [ Counter ]
     private void CounterFinished()
     {
-        forceConcensus((PlayerId)Random.Range(1, 2));
-        forceConcensus((PlayerId)Random.Range(3, 4));
-        //TODO: if players on team don't have same objective, pick one of them randomly to be the obj for both
+
         string players = "";
-        foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
+        foreach (var team in Globals.Instance.Teams.Teams)
         {
-            if (this.objective.ContainsKey(player))
-            {
-                players += player + " is " + this.objective[player] + " " + this.teamManager.GetTeam(player) + "   ";
-            }
+            // choose highest voted option
+            team.Players.Select(p => p.ObjectiveSelected);
+            var teamObjective = team.Players.GroupBy(p => p.ObjectiveSelected)
+                .OrderByDescending(g => g.Count())
+                .Select(g => g.Key)
+                .First();
+            team.Objective = teamObjective;
+
+            //TODO: figure out why team numbers are 0
+            players += "Team #" + team.TeamNumber + " is " + team.Objective;
         }
+
+
+
+        //forceConcensus((PlayerId)Random.Range(1, 2));
+        //forceConcensus((PlayerId)Random.Range(3, 4));
+        ////TODO: if players on team don't have same objective, pick one of them randomly to be the obj for both
+        ////string players = "";
+        //foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
+        //{
+        //    if (this.objective.ContainsKey(player))
+        //    {
+        //        players += player + " is " + this.objective[player] + " " + this.teamManager.GetTeam(player) + "   ";
+        //    }
+        //}
         Debug.Log(players);
 
         Application.LoadLevel(this.LevelToLoad);
