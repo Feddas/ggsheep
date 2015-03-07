@@ -14,12 +14,10 @@ public class SwapObjectives : MonoBehaviour
     private float secondsLeftToActivate;
     private Player firstButtonPusher;
 
-    private TeamManager teamManager;
 
     #region [ Unity Events ]
     void Start()
     {
-        this.teamManager = FindObjectOfType<TeamManager>();
         secondsLeftToActivate = SecondsToActivate;
     }
 

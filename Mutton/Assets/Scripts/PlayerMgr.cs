@@ -14,18 +14,12 @@ public class PlayerMgr : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    var teamManager = FindObjectOfType<TeamManager>();
 		foreach(Player player in _players)
 		{
-			if( !teamManager.HasTeam(player.playerId) )
+            if ( Globals.Instance.ManageTeam.GetTeamNumber(player.playerId) == -1 )
 			{
 				player.gameObject.SetActive(false);
 			}
-		}
-
-		if( teamManager.teams.Count == 0 )
-		{
-			_players[0].gameObject.SetActive(true);
 		}
 	}
 	

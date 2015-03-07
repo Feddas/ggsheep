@@ -33,8 +33,12 @@ public class TeamManager2
         {
             if (teams == null)
             {
-                // setup game to always have 2 teams
-                teams = new List<Team>() { new Team(1), new Team(2) };
+                // create NumberOfTeams teams
+                teams = new List<Team>();
+                for (int i = 0; i < NumberOfTeams; i++)
+                {
+                    teams.Add(new Team(i));
+                }
             }
             return teams;
         }
@@ -48,7 +52,8 @@ public class TeamManager2
 
         var matchingPlayerId = AllPlayers.Where(p => p.PlayerNumber == playerId);
         if (matchingPlayerId.Count() == 0)
-            throw new Exception("player " + playerId + " was not found in the list of " + AllPlayers.Count() + " players.");
+            // throw new Exception("player " + playerId + " was not found in the list of " + AllPlayers.Count() + " players.");
+            return -1; // -1 flag used by PlayerMgr to activate player gameobjects
 
         var targetPlayer = matchingPlayerId.First();
 
@@ -62,6 +67,14 @@ public class TeamManager2
         //allPlayers = Teams.SelectMany(t => t.Players).ToList();
         //return allPlayers.Where(p => p.PlayerNumber == playerId)
         //    .First().TeamNumber;
+    }
+
+    public string GetPlayerAxisName(string axisName, PlayerId playerId)
+    {
+        return axisName + AllPlayers
+            .Where(p => p.PlayerNumber == playerId)
+            .Select(p => p.ControllerAffix)
+            .First();
     }
 
     public TeamPlayer ObjectiveUpdated(string controllerAffix, ScoreType objectiveChoosen, out bool isNewPlayer, out bool newObjective)
@@ -109,7 +122,7 @@ public class Team
 
     public Team(int teamNumber)
     {
-        this.TeamNumber = TeamNumber;
+        this.TeamNumber = teamNumber;
         this.Players = new List<TeamPlayer>();
     }
 }

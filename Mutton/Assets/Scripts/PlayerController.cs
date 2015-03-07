@@ -141,8 +141,10 @@ public AnimationClip jumpPoseAnimation;
 		// Always orthogonal to the forward vector
 		Vector3 right= new Vector3(forward.z, 0, -forward.x);
 
-		float v = Input.GetAxisRaw("VerticalGP" + ((int)_player.playerId).ToString()) + Input.GetAxisRaw("Vertical");
-		float h = Input.GetAxisRaw("HorizontalGP" + ((int)_player.playerId).ToString()) + Input.GetAxisRaw("Horizontal");
+        //float v = Input.GetAxisRaw("VerticalGP" + ((int)_player.playerId).ToString()) + Input.GetAxisRaw("Vertical");
+        //float h = Input.GetAxisRaw("HorizontalGP" + ((int)_player.playerId).ToString()) + Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw(Globals.Instance.ManageTeam.GetPlayerAxisName("Vertical", _player.playerId)) + Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw(Globals.Instance.ManageTeam.GetPlayerAxisName("Horizontal", _player.playerId)) + Input.GetAxisRaw("Horizontal");
 
 		//float v= Input.GetAxisRaw("Vertical");
 		//float h= Input.GetAxisRaw("Horizontal");

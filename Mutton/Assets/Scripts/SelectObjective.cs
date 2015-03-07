@@ -86,7 +86,7 @@ public class SelectObjective : MonoBehaviour
                 audio.Play();
             }
 
-            Debug.Log("udated via " + controllerAffix + " teams: " + Globals.Instance.ManageTeam.AllPlayers.Count());
+            Debug.Log("added new " + controllerAffix + " player to team " + Globals.Instance.ManageTeam.GetTeamNumber(player.PlayerNumber));
         }
     }
 
@@ -233,23 +233,8 @@ public class SelectObjective : MonoBehaviour
 
             team.Objective = teamObjective;
 
-            //TODO: figure out why team numbers are 0
-            players += "Team #" + team.TeamNumber + " is " + team.Objective;
+            players += "Team #" + team.TeamNumber + " is " + team.Objective + ". ";
         }
-
-
-
-        //forceConcensus((PlayerId)Random.Range(1, 2));
-        //forceConcensus((PlayerId)Random.Range(3, 4));
-        ////TODO: if players on team don't have same objective, pick one of them randomly to be the obj for both
-        ////string players = "";
-        //foreach (PlayerId player in System.Enum.GetValues(typeof(PlayerId)))
-        //{
-        //    if (this.objective.ContainsKey(player))
-        //    {
-        //        players += player + " is " + this.objective[player] + " " + this.teamManager.GetTeam(player) + "   ";
-        //    }
-        //}
         Debug.Log(players);
 
         Application.LoadLevel(this.LevelToLoad);

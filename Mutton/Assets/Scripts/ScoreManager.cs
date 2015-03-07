@@ -38,24 +38,21 @@ public class ScoreManager : MonoBehaviour
 
     public GameOverScreen gameOverScreen;
 
-	public TeamManager teamManager;
-
 	public int maxHeadSizeReferenceScore = 100;
 
     public int GetTeamScore(PlayerId playerId)
     {
-		var teamNumber = this.teamManager.GetTeamNumber(playerId);
-		
-		ScoreType scoreType = this.teamManager.teams[teamNumber].objective;
-		
-		return scores[teamNumber][scoreType];
+        var teamNumber = Globals.Instance.ManageTeam.GetTeamNumber(playerId);
+        ScoreType scoreType = Globals.Instance.ManageTeam[teamNumber].Objective.Value;
+
+        return scores[teamNumber][scoreType];
     }
 
     public int GetTotalTeamScore(PlayerId playerId)
     {
-		var teamNumber = this.teamManager.GetTeamNumber(playerId);
+        var teamNumber = Globals.Instance.ManageTeam.GetTeamNumber(playerId);
 
-		return scores[teamNumber].Sum(x => x.Value);
+        return scores[teamNumber].Sum(x => x.Value);
     }
 
     /// <summary>
@@ -88,14 +85,13 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     internal void Start()
     {
-        this.teamManager = FindObjectOfType<TeamManager>();
         this.cachedSoundEffects = GameObject.FindObjectOfType<SoundEffectManager>();
         //Test persistance of Globals.cs from menu scene
         //Debug.Log("Globals instance = " + Globals.Instance.Objective[PlayerId.One] + Globals.Instance.Objective[PlayerId.Two]);
 
         // initialize score structure
         this.scores = new Dictionary<int, Dictionary<ScoreType, int>>();
-        for (int teamNumber = 0; teamNumber < this.teamManager.teams.Count; teamNumber++)
+        for (int teamNumber = 0; teamNumber < Globals.Instance.ManageTeam.NumberOfTeams; teamNumber++)
         {
             this.scores.Add(teamNumber, new Dictionary<ScoreType, int>());
             foreach (ScoreType scoreType in Enum.GetValues(typeof(ScoreType)))
@@ -132,7 +128,7 @@ public class ScoreManager : MonoBehaviour
 		// enable only relevant scoreboards
 		for (int teamNumber = 0; teamNumber < this.scoreboards.Count; teamNumber++)
 		{
-			this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < this.teamManager.teams.Count);
+            this.scoreboards[teamNumber].gameObject.SetActive(teamNumber < Globals.Instance.ManageTeam.NumberOfTeams);
 		}
 
 		//this.StartCoroutine(this.WaitAndInvoke(1f, () => this.StartCountdown()));
@@ -160,13 +156,13 @@ public class ScoreManager : MonoBehaviour
 
 			    int bestScore = 0;
                 int bestTeam = 0;
-			    for (int teamNumber = 0; teamNumber < this.teamManager.teams.Count; teamNumber++)
+                for (int teamNumber = 0; teamNumber < Globals.Instance.ManageTeam.NumberOfTeams; teamNumber++)
 			    {
-			        var team = this.teamManager.teams[teamNumber];
-			        this.scoreboards[teamNumber].HighlightObjective(team.objective);
-			        if (this.scores[teamNumber][team.objective] > bestScore)
+                    var team = Globals.Instance.ManageTeam[teamNumber];
+			        this.scoreboards[teamNumber].HighlightObjective(team.Objective.Value);
+			        if (this.scores[teamNumber][team.Objective.Value] > bestScore)
 			        {
-			            bestScore = this.scores[teamNumber][team.objective];
+			            bestScore = this.scores[teamNumber][team.Objective.Value];
 			            bestTeam = teamNumber;
 			        }
 			    }
@@ -198,7 +194,7 @@ public class ScoreManager : MonoBehaviour
 		}
 
         // increment player score
-        var teamNumber = this.teamManager.GetTeamNumber(playerId);
+        var teamNumber = Globals.Instance.ManageTeam.GetTeamNumber(playerId);
         this.scores[teamNumber][scoreType] += this.ScoreModifier(scoreType);
 		//this.playerScores[playerId][scoreType] += this.ScoreModifier(scoreType);
 
