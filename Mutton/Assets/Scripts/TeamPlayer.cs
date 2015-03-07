@@ -16,7 +16,7 @@ public class TeamPlayer
                 return teamNumber;
 
             // determine teamNumber
-            teamNumber = Globals.Instance.Teams.GetTeamNumber(PlayerNumber);
+            teamNumber = Globals.Instance.ManageTeam.GetTeamNumber(PlayerNumber);
             return teamNumber;
         }
     }

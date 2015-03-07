@@ -52,16 +52,10 @@ public class SelectObjective : MonoBehaviour
                 CounterFinished();
         }
 
-        SetObjective("GP1");
-        SetObjective("GP2");
-        SetObjective("GP3");
-        SetObjective("GP4");
-        SetObjective("Wasd");  // WASD
-        SetObjective("Arrows");
-        //SetObjective(PlayerId.One);
-        //SetObjective(PlayerId.Two);
-        //SetObjective(PlayerId.Three);
-        //SetObjective(PlayerId.Four);
+        foreach (var affix in Globals.Instance.ManageTeam.ControllerSchemes)
+        {
+            SetObjective(affix);
+        }
     }
     #endregion [ Unity Events ]
 
@@ -75,7 +69,7 @@ public class SelectObjective : MonoBehaviour
             DirectionEnum dir = getDirection(xAxis, yAxis);
             var objective = ObjectiveUiMap[dir];
             bool newPlayer, newObjective;
-            TeamPlayer player = Globals.Instance.Teams.ObjectiveUpdated(controllerAffix, objective, out newPlayer, out newObjective);
+            TeamPlayer player = Globals.Instance.ManageTeam.ObjectiveUpdated(controllerAffix, objective, out newPlayer, out newObjective);
 
             // enable player icon
             if (newPlayer)
@@ -92,7 +86,7 @@ public class SelectObjective : MonoBehaviour
                 audio.Play();
             }
 
-            Debug.Log("udated via " + controllerAffix + " teams: " + Globals.Instance.Teams.AllPlayers.Count());
+            Debug.Log("udated via " + controllerAffix + " teams: " + Globals.Instance.ManageTeam.AllPlayers.Count());
         }
     }
 
@@ -226,16 +220,17 @@ public class SelectObjective : MonoBehaviour
     #region [ Counter ]
     private void CounterFinished()
     {
-
         string players = "";
-        foreach (var team in Globals.Instance.Teams.Teams)
+        foreach (var team in Globals.Instance.ManageTeam.Teams)
         {
-            // choose highest voted option
-            team.Players.Select(p => p.ObjectiveSelected);
-            var teamObjective = team.Players.GroupBy(p => p.ObjectiveSelected)
-                .OrderByDescending(g => g.Count())
+            // choose one of the highest voted options http://stackoverflow.com/questions/4179448/return-list-with-maximum-count-using-linq
+            var topObjectives = team.Players.GroupBy(p => p.ObjectiveSelected); // group the same objectives to count them
+            var maxVotes = topObjectives.Max(g => g.Count()); // find the highest counts
+            topObjectives = topObjectives.Where(g => g.Count() == maxVotes); // keep only the objectives with the highest count
+            var teamObjective = topObjectives // choose one from the list
                 .Select(g => g.Key)
-                .First();
+                .ToList()[Random.Range(0, topObjectives.Count())];
+
             team.Objective = teamObjective;
 
             //TODO: figure out why team numbers are 0

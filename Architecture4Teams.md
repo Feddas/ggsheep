@@ -20,3 +20,11 @@
     - if that controller is registered, update that players ObjectiveSelected.
 - menu time elapses
     - determine team objectives
+
+# Add a new controller configuration
+1. Come up with a name for the controller, aka "Wasd" or "Arrows"
+2. Add how the controller will function to Edit->Project Settings->Input
+    2.1. Copy a current horizontal and vertical configuration
+    2.2. Change the name to Horizontal[Name] and Vertical[Name]
+    2.3. Change the input source
+3. Update TeamManager2.cs's ControllerSchemes list to include the new controller affix [Name].

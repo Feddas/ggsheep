@@ -9,6 +9,24 @@ using System;
 /// </summary>
 public class TeamManager2
 {
+    public int NumberOfTeams = 2;
+    [Tooltip("This needs to exactly match the affix for Horizontal and Vertical settings in Edit->Project Settings->Input")]
+    public List<string> ControllerSchemes = new List<string>() {
+        "GP1", "GP2", "GP3", "GP4", "Wasd" /* WASD */, "Arrows"
+    };
+
+    public Team this[int i]
+    {
+        get
+        {
+            return Teams[i];
+        }
+        set
+        {
+            Teams[i] = value;
+        }
+    }
+
     public List<Team> Teams
     {
         get
@@ -21,8 +39,8 @@ public class TeamManager2
             return teams;
         }
     }
-    private List<Team> teams;
     public List<TeamPlayer> AllPlayers = new List<TeamPlayer>();
+    private List<Team> teams;
 
     public int GetTeamNumber(PlayerId playerId)
     {
