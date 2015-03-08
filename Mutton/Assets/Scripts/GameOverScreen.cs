@@ -29,6 +29,7 @@ public class GameOverScreen : MonoBehaviour
     public IEnumerator LoadMenu()
     {
         yield return new WaitForSeconds(this.secondsToWait);
+        Globals.Instance.ManageTeam.Reset();
         Application.LoadLevel(this.menuToLoad);
     }
 }

@@ -74,7 +74,7 @@ public class SelectObjective : MonoBehaviour
             // enable player icon
             if (newPlayer)
             {
-                counterOn = true;
+                counterOn = Globals.Instance.ManageTeam.AllPlayers.Count > 1;
                 enablePlayer(player.PlayerNumber);
             }
 
@@ -87,39 +87,6 @@ public class SelectObjective : MonoBehaviour
             }
 
             Debug.Log("added new " + controllerAffix + " player to team " + Globals.Instance.ManageTeam.GetTeamNumber(player.PlayerNumber));
-        }
-    }
-
-    private void SetObjective(PlayerId player)
-    {
-        float xAxis = Input.GetAxis("HorizontalGP" + (int)player);
-        float yAxis = Input.GetAxis("VerticalGP" + (int)player);
-        if (xAxis != 0 || yAxis != 0)
-        {
-            DirectionEnum dir = getDirection(xAxis, yAxis);
-            var objective = ObjectiveUiMap[dir];
-            bool newPlayer = this.objective.ContainsKey(player) == false;
-
-            // enable player icon
-            if (newPlayer)
-            {
-                counterOn = true;
-                enablePlayer(player);
-            }
-
-            // update objective
-            if (newPlayer || this.objective[player] != objective)
-            {
-                this.objective[player] = objective;
-
-                // apply to team
-                this.teamManager.GetTeam(player).objective = objective;
-
-                updateConcensus(player);
-                audio.Stop();
-                audio.pitch = (float)player / 2f;
-                audio.Play();
-            }
         }
     }
 
@@ -151,71 +118,6 @@ public class SelectObjective : MonoBehaviour
         //Debug.Log("enabled player " + player);
     }
     #endregion [ Change Objective ]
-
-    #region [ Concensus ]
-    private void updateConcensus(PlayerId player)
-    {
-        int team = (int)player < 3 ? 0 : 1;
-
-        if (isConcensus(player))
-            TeamText[team].color = Color.white;
-        else
-            TeamText[team].color = Color.black;
-    }
-
-    private bool isConcensus(PlayerId player)
-    {
-        PlayerId teammate = getTeammate(player);
-
-        if (this.objective.ContainsKey(teammate))
-        {
-            bool result = this.objective[player] == this.objective[teammate];
-            return result;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private PlayerId getTeammate(PlayerId player)
-    {
-        return this.teamManager.GetTeam(player).members.First(x => x != player);//.Select(x => x != player).First();
-        //PlayerId teammate;
-        //switch (player)
-        //{
-        //    case PlayerId.One:
-        //        teammate = PlayerId.Three;
-        //        break;
-        //    case PlayerId.Two:
-        //        teammate = PlayerId.Four;
-        //        break;
-        //    case PlayerId.Three:
-        //        teammate = PlayerId.One;
-        //        break;
-        //    case PlayerId.Four:
-        //        teammate = PlayerId.Two;
-        //        break;
-        //    default:
-        //        throw new System.Exception("invalid playerId in isConcensus");
-        //}
-        //return teammate;
-    }
-
-    /// <param name="forcingPlayer">player that contains the objective that will be used for the entire team</param>
-    private void forceConcensus(PlayerId forcingPlayer)
-    {
-        PlayerId teammate = getTeammate(forcingPlayer);
-        if (this.objective.ContainsKey(teammate) && this.objective.ContainsKey(forcingPlayer))
-        {
-            Debug.Log(this.objective[forcingPlayer] + ":1:" + this.objective[teammate]);
-            this.objective[teammate] = this.objective[forcingPlayer];
-            Debug.Log(this.objective[forcingPlayer] + ":2:" + this.objective[teammate]);
-            // apply to team
-            this.teamManager.GetTeam(forcingPlayer).objective = this.objective[forcingPlayer];
-        }
-    }
-    #endregion [ Concensus ]
 
     #region [ Counter ]
     private void CounterFinished()

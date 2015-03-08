@@ -33,18 +33,14 @@ public class TeamManager2
         {
             if (teams == null)
             {
-                // create NumberOfTeams teams
-                teams = new List<Team>();
-                for (int i = 0; i < NumberOfTeams; i++)
-                {
-                    teams.Add(new Team(i));
-                }
+                teams = recreateTeams();
             }
             return teams;
         }
     }
-    public List<TeamPlayer> AllPlayers = new List<TeamPlayer>();
     private List<Team> teams;
+
+    public List<TeamPlayer> AllPlayers = new List<TeamPlayer>();
 
     public int GetTeamNumber(PlayerId playerId)
     {
@@ -99,6 +95,12 @@ public class TeamManager2
         return player;
     }
 
+    public void Reset()
+    {
+        teams = recreateTeams();
+        AllPlayers = new List<TeamPlayer>();
+    }
+
     private TeamPlayer addPlayer(string controllerAffix)
     {
         int numPlayers = AllPlayers.Count;
@@ -111,6 +113,17 @@ public class TeamManager2
         theirTeam.Players.Add(newPlayer);
         AllPlayers = Teams.SelectMany(t => t.Players).ToList();
         return newPlayer;
+    }
+
+    private List<Team> recreateTeams()
+    {
+        // create NumberOfTeams teams
+        var result = new List<Team>();
+        for (int i = 0; i < NumberOfTeams; i++)
+        {
+            result.Add(new Team(i));
+        }
+        return result;
     }
 }
 
